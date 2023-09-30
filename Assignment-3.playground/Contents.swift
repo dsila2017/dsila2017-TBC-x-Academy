@@ -59,18 +59,32 @@ print(result4)
 
 var intArr1 = [8, 4, 9, 9, 0, 2]
 var intArr2 = [1, 0, 9, 2, 3, 7, 0, 1]
+var unitedArray = [Int]()
 var resultArr = [Int]()
 
-intArr1.append(contentsOf: intArr2)
+unitedArray = intArr1 + intArr2
 
-for _ in intArr1 {
-    resultArr.append(intArr1.min()!)
-    var index = intArr1.min()!
-    intArr1.remove(at: intArr1.firstIndex(of: index)!)
+for _ in unitedArray {
+    resultArr.append(unitedArray.min()!)
+    var index = unitedArray.min()!
+    unitedArray.remove(at: unitedArray.firstIndex(of: index)!)
 }
 
 print(resultArr)
 
+// მეორე ვარიანტი
+
+for i in 0..<unitedArray.count {
+    for j in 0..<unitedArray.count {
+        var temporary = 0
+        if unitedArray[i] < unitedArray[j] {
+            temporary = unitedArray[i]
+            unitedArray[i] = unitedArray[j]
+            unitedArray[j] = temporary
+        }
+    }
+}
+print(unitedArray)
 
 // შექმენით String ტიპის ცვლადი და შეამოწმეთ არის თუ არა ყველა ჩარაქტერი ამ სტრინგში უნიკალური. გამოიყენეთ Set-ი ამ თასკის შესასრულებლად.
 
@@ -144,5 +158,3 @@ for i in dict.values {
 
 result = result/dict.count
 print(result)
-
-

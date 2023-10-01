@@ -120,13 +120,9 @@ var binary = { (number: Int) -> (Int) in
         counter += 1
     }
     arrayx.sort(by: {$0>$1})
-    print(arrayx)
     
     for i in arrayx {
-        print(x)
         if x >= i {
-            print("i", i)
-            print(x)
             x -= i
             temp = 1
             result += String(temp)
@@ -143,7 +139,6 @@ var binary = { (number: Int) -> (Int) in
         temp = 0
         result += String(temp)
     }
-    print(result)
     return counter
 }
 

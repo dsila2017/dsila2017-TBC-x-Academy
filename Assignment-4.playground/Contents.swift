@@ -36,6 +36,7 @@ fibonacci()
 
 func stringer(input: String) -> Bool {
     var string = ""
+    
     for i in input {
         string = String(i) + string
     }
@@ -49,18 +50,32 @@ func stringer(input: String) -> Bool {
 
 stringer(input: "racecar")
 
+// მეორე ვარიანტი
+
+func stringer1(input: String) -> Bool {
+    if input == String(input.reversed()){
+        return true
+    }
+    
+    return false
+}
+
+stringer1(input: "racecar")
+
 // 4. შექმენით function რომელიც გადაცემულ რიცხვების array-ს ააკვარდატებს, დაპრინტავს და დააბრუნებს მნიშვნელობას.
 
 func m2(numArray: [Int]) -> [Int] {
     var result = [Int]()
+    
     for i in numArray {
         result.append(i * i)
     }
     print(result)
+    
     return result
 }
 
-m2(numArray: [2,4])
+m2(numArray: [1,2,3,4])
 
 // 5. შექმენით function რომელიც დაითვლის სიტყვების რაოდენობას String-ში, ფუნქციამ უნდა მიიღოს String-ი, და დააბრუნოს dictionary, სიტყვებით და იმ რაოდენობით რამდენჯერ იყო ერთი და იგივე სიტყვა გამოყენებული String-ში. uppercase და lowercase ასოები უნდა იყოს დაჰენდლილი ერთნაირად, მაგალითად თუ function-s გადავაწვდით "TBC x USAID, tbc it academy, we are in TBC academy." function-მა უნდა დააბრუნოს ["tbc": 3, "academy": 2, "we": 1, "are": 1, "in": 1, "it": 1, "x": 1]
 
@@ -68,14 +83,13 @@ func wordCounter(string: String) -> [String: Int] {
     var result = [String: Int]()
     var resultString = string
     
-    resultString.removeAll { i in
-        i == "," || i == "."
+    resultString.removeAll { word in
+        word == "," || word == "."
     }
     let lowerString = resultString.lowercased()
     let finalString = lowerString.split(separator: " ")
     
     for i in finalString {
-        
         if result[String(i)] == nil{
             result[String(i)] = 1
         }
@@ -83,7 +97,6 @@ func wordCounter(string: String) -> [String: Int] {
             result[String(i)]! += 1
         }
     }
-    
     print(result)
     
     return result
@@ -158,6 +171,18 @@ var oddArray = [1,2,3,4,5,6,7,8,9,10]
 
 oddFilter(&oddArray)
 
+// მეორე ვარიანტი
+
+var oddFilter1 = { (array: inout [Int]) -> ([Int]) in
+    let newarray = array.filter { $0.isMultiple(of: 2) }
+    
+    return newarray
+}
+
+var oddArray1 = [1,2,3,4,5,6,7,8,9,10]
+
+oddFilter1(&oddArray1)
+
 // 8. შექმენით Closure რომელიც დამაპავს(ანუ გააკეთებს ქმედებას ყველა მასივის ელემენტზე) Int-ების Array-ის და თითოეულ ელემენტს გაათმაგებს.
 
 var mapClosure = { (array: inout [Int]) -> ([Int]) in
@@ -176,13 +201,16 @@ mapClosure(&oddArray)
 // 9. გამოიყენეთ escaping closure სადაც 3 წამის შემდეგ დაბეჭდავს ჩაწოდებული მასივის ჯამს.
 
 var escapingClosure = { (array: [Int]) -> () in
+        print(array.reduce(0, +))
+}
+
+func closure (array: [Int], closure: @escaping ([Int]) -> ()) {
     DispatchQueue.main.asyncAfter (deadline: .now()+3){
-        print(array)
+        closure(array)
     }
 }
 
-escapingClosure([1,2,3,4])
-
+closure(array: [1,2,3,4], closure: escapingClosure)
 // 10. function-ს გადავცეთ String-ების array და დაგვიბრუნოს მხოლოდ კენტი რიცხვების მასივი. გამოიყენეთ high order functions.
 
 func mapFunc (array: [String]) -> [Int] {

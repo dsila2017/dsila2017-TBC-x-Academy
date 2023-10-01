@@ -94,19 +94,47 @@ wordCounter(string: "TBC x USAID, tbc it academy, we are in TBC academy.")
 // 6. შექმენით Closure რომელსაც გადაეცემა რიცხვი და დააბრუნებს ამ რიცხვის ორობით ჩანაწერს.
 
 var binary = { (number: Int) -> (Int) in
-    var x = 1900
+    var x = number
     var counter = 0
-    
+    var arrayx = [Int]()
     var x2 = 2
-    while x2 < x {
+    var result = ""
+    var temp = 0
+    
+    while x2 <= x {
+        arrayx.append(x2)
         x2 *= 2
         counter += 1
     }
-    print(counter)
+    arrayx.sort(by: {$0>$1})
+    print(arrayx)
+    
+    for i in arrayx {
+        print(x)
+        if x >= i {
+            print("i", i)
+            print(x)
+            x -= i
+            temp = 1
+            result += String(temp)
+        } else if x >= 1{
+            temp = 0
+            result += String(temp)
+        }
+    }
+    if x == 1 {
+        temp = 1
+        result += String(temp)
+    }
+    if x == 0 {
+        temp = 0
+        result += String(temp)
+    }
+    print(result)
     return counter
 }
 
-binary(10)
+binary(259)
 
 // მეორე ვარიანტი
 

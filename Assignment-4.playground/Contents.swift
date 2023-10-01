@@ -84,7 +84,6 @@ func wordCounter(string: String) -> [String: Int] {
         }
     }
     
-    //    print(x)
     print(result)
     
     return result
@@ -148,16 +147,20 @@ mapClosure(&oddArray)
 
 // 9. გამოიყენეთ escaping closure სადაც 3 წამის შემდეგ დაბეჭდავს ჩაწოდებული მასივის ჯამს.
 
-var escClosure = { (array: [Int]) -> () in
-    
+var escapingClosure = { (array: [Int]) -> () in
+    DispatchQueue.main.asyncAfter (deadline: .now()+3){
+        print(array)
+    }
 }
+
+escapingClosure([1,2,3,4])
 
 // 10. function-ს გადავცეთ String-ების array და დაგვიბრუნოს მხოლოდ კენტი რიცხვების მასივი. გამოიყენეთ high order functions.
 
 func mapFunc (array: [String]) -> [Int] {
     
     var intArray = array.compactMap { element in
-    Int(element)
+        Int(element)
     }
     var resultArray = intArray.filter { $0 % 2 == 0}
     

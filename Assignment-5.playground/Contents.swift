@@ -29,7 +29,7 @@ enum Weather {
 
 func weather (weather: Weather) {
     switch weather {
-    
+        
     case .sunny(Celsius: let Celsius):
         "Its Sunny outside, \(Celsius) degress, you will need 🩳"
     case .cloudy(Celsius: let Celsius):
@@ -104,16 +104,14 @@ struct Song {
     var description: String {
         title + " 🎧 " + artist + " 🎤"
     }
-    lazy var publisher: String? = {
-        "print(String(newValue))"
-    }()
+    lazy var publisher = String()
 }
 
 var playlistArr = [
-        Song(title: "God's Plan", artist: "Drake", duration: 3.19, genre: .pop),
-        Song(title: "Paint the Town Red", artist: "Doja Car", duration: 3.5, genre: .hip_hop),
-        Song(title: "I Remember Everything", artist: "Zach Bryan", duration: 3.47, genre: .country, publisher: "Warner Chappell Music"),
-        Song(title: "stairway to heaven", artist: "Led Zeppelin", duration: 8.02, genre: .rock)
+    Song(title: "God's Plan", artist: "Drake", duration: 3.19, genre: .pop),
+    Song(title: "Paint the Town Red", artist: "Doja Car", duration: 3.5, genre: .hip_hop),
+    Song(title: "I Remember Everything", artist: "Zach Bryan", duration: 3.47, genre: .country, publisher: "Warner Chappell Music"),
+    Song(title: "stairway to heaven", artist: "Led Zeppelin", duration: 8.02, genre: .rock)
 ]
 
 var song9 = Song(title: "I Remember Everything", artist: "Zach Bryan", duration: 3.47, genre: .country, publisher: "Warner Chappell Music")
@@ -124,10 +122,10 @@ func genreFilter (playlist: [Song], genre: Genre) -> [Song] {
     result = playlist.filter({$0.genre == genre})
     
     for song in result {
-        print(song.description)
-        
+        var song = song
+        print(song.description, song.publisher)
     }
     return result
 }
 
-genreFilter(playlist: playlistArr, genre: .country)
+genreFilter(playlist: playlistArr, genre: .pop)

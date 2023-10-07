@@ -29,15 +29,19 @@ enum Weather {
 
 func weather (weather: Weather) {
     switch weather {
-        
+        // sunny-ს შემთხვევაში ტემპერატურის მიხედვით ბეჭდავს, დანარჩენები პირდაპირ დავაბეჭდინე.
     case .sunny(Celsius: let Celsius):
-        "Its Sunny outside, \(Celsius) degress, you will need 🩳"
+        if Celsius >= 30{
+            print ("Its sunny outside, \(Celsius) degress, you will need 🩳")
+        } else {
+            print ("Its sunny outside, \(Celsius) degress, you will need 👕")
+        }
     case .cloudy(Celsius: let Celsius):
-        "Its Cloudy outside, \(Celsius) degress, you will need an 🧥"
+        "Its cloudy outside, \(Celsius) degress, you will need an 🧥"
     case .rainy(Celsius: let Celsius):
-        "Its Rainy outside, \(Celsius) degress, you will need ☔️"
+        "Its rainy outside, \(Celsius) degress, you will need ☔️"
     case .snowy(Celsius: let Celsius):
-        "Its Snowy outside, \(Celsius) degress, you will need 🧤"
+        "Its snowy outside, \(Celsius) degress, you will need 🧤"
     }
 }
 
@@ -60,7 +64,11 @@ var bookArray = [
 ]
 
 func books (array: [Book], year: Int) -> [Book] {
-    array.filter({$0.publicationYear > year})
+    var result = array.filter({$0.publicationYear > year})
+    for book in result {
+        print(book)
+    }
+    return result
 }
 
 books(array: bookArray, year: 1901)
@@ -89,6 +97,7 @@ struct BankAccount {
 var client = BankAccount(holderName: "David", accountNumber: 0, balance: 100)
 client.add(ammount: 300)
 client.withdraw(ammount: 400)
+client.withdraw(ammount: 100)
 
 // 5. შექმენით enum-ი Genre მუსიკის ჟანრის ქეისებით. ამის შემდეგ შექმენით struct Song, with properties: title, artist, duration, genre, description (computied propertie უნდა იყოს description) და publisher (lazy propertie-ად შექმენით publisher). შემდეგ შექმენით თქვენი playlist array რომელსაც Song-ებით შეავსებთ (ზოგ song-ს ჰქონდეს publisher, ზოგს არა). შექმენით function რომელსაც გადააწვდით თქვენს playlist-ს და ჟანრს, function-ს დააბრუნებინეთ მხოლოდ იმ Song-ების array, რომელიც ამ ჟანრის იქნება და შემდეგ დაა-print-ინეთ ეს Song-ები.
 
@@ -105,6 +114,10 @@ struct Song {
         title + " 🎧 " + artist + " 🎤"
     }
     lazy var publisher = String()
+    // ესეც ვცადე და ორივემ იმუშავა, ქვედა ვარიანტი ჩავაკომენტარე აქაც და ქვევით, for ციკლშიც.
+    // lazy var publisher1: String? = {
+    //     nil
+    // }()
 }
 
 var playlistArr = [
@@ -114,9 +127,6 @@ var playlistArr = [
     Song(title: "stairway to heaven", artist: "Led Zeppelin", duration: 8.02, genre: .rock)
 ]
 
-var song9 = Song(title: "I Remember Everything", artist: "Zach Bryan", duration: 3.47, genre: .country, publisher: "Warner Chappell Music")
-var song4 = Song(title: "I Remember Everything", artist: "Zach Bryan", duration: 3.47, genre: .country)
-
 func genreFilter (playlist: [Song], genre: Genre) -> [Song] {
     var result = [Song]()
     result = playlist.filter({$0.genre == genre})
@@ -124,8 +134,11 @@ func genreFilter (playlist: [Song], genre: Genre) -> [Song] {
     for song in result {
         var song = song
         print(song.description, song.publisher)
+        //        if song.publisher1 != nil {
+        //            print(song.publisher1)
+        //        }
     }
     return result
 }
 
-genreFilter(playlist: playlistArr, genre: .pop)
+genreFilter(playlist: playlistArr, genre: .country)

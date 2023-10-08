@@ -185,3 +185,202 @@ library.borrowedBooks()
 library.availableBooks()
 library.borrowedByOwner(owner: person1)
 library.ownerByID(ownerID: 10)
+
+//1. შევქმნათ Class Product,
+//
+//შევქმნათ შემდეგი properties productID (უნიკალური იდენტიფიკატორი Int), String name, Double price.
+//
+//შევქმნათ Designated Init.
+
+class Product {
+    var productID: Int
+    var name: String
+    var price: Double
+    
+    init(productID: Int, name: String, price: Double) {
+        self.productID = productID
+        self.name = name
+        self.price = price
+    }
+}
+
+//2. შევქმნათ Class Cart
+//
+//Properties: cartID(უნიკალური იდენტიფიკატორი Int), Product-ების Array სახელად items.
+//
+//შევქმნათ Designated Init.
+//
+//Method იმისათვის რომ ჩვენს კალათაში დავამატოთ პროდუქტი.
+//
+//Method იმისათვის რომ ჩვენი კალათიდან წავშალოთ პროდუქტი მისი აიდით.
+//
+//Method რომელიც დაგვითვლის ფასს ყველა იმ არსებული პროდუქტის რომელიც ჩვენს კალათაშია.
+
+class Cart {
+    var cartID: Int
+    var items = [Product]()
+    
+    init(cartID: Int, items: [Product]) {
+        self.cartID = cartID
+        self.items = items
+    }
+    
+    convenience init(cartID: Int) {
+        self.init(cartID: cartID, items: [])
+    }
+    
+    func addToCart(product: Product) {
+        items.append(product)
+        print("Product \(product.name) was added 🛒")
+    }
+    func removeFromCart(product: Product) {
+        items.removeAll(where: {$0.productID == product.productID})
+    }
+    func sumBasket() -> Double {
+        var sum = 0.0
+        items.forEach({sum += $0.price})
+        return sum
+    }
+}
+
+//3. შევქმნათ Class User
+//
+//Properties: userID(უნიკალური იდენტიფიკატორი Int), String username, Cart cart.
+//
+//Designated Init.
+//
+//Method რომელიც კალათაში ამატებს პროდუქტს.
+//
+//Method რომელიც კალათიდან უშლის პროდუქტს.
+//
+//Method რომელიც checkout (გადახდის)  იმიტაციას გააკეთებს დაგვითვლის თანხას და გაასუფთავებს ჩვენს shopping cart-ს.
+
+class User {
+    var userID: Int
+    var username: String
+    var cart: Cart
+    
+    init(userID: Int, username: String, cart: Cart) {
+        self.userID = userID
+        self.username = username
+        self.cart = cart
+    }
+    
+    func addToBasket(product: Product) {
+        cart.addToCart(product: product)
+    }
+    func removeFromBasket(product: Product) {
+        cart.removeFromCart(product: product)
+    }
+    func checkout() {
+        cart.sumBasket()
+        cart.items.removeAll()
+        print("\(username) Transaction Successful 💸")
+    }
+}
+
+//4. გავაკეთოთ იმიტაცია და ვამუშაოთ ჩვენი ობიექტები ერთად.
+//
+//შევქმნათ რამოდენიმე პროდუქტი.
+//
+//შევქმნათ 2 user-ი, თავისი კალათებით,
+//
+//დავუმატოთ ამ იუზერებს კალათებში სხვადასხვა პროდუქტები,
+//
+//დავბეჭდოთ price ყველა item-ის ამ იუზერების კალათიდან.
+//
+//და ბოლოს გავაკეთოთ სიმულაცია ჩექაუთის, დავაბეჭდინოთ იუზერების გადასხდელი თანხა და გავუსუფთაოთ კალათები.
+
+var product1 = Product(productID: 1, name: "One", price: 10.90)
+var product2 = Product(productID: 2, name: "Two", price: 10.90)
+var product3 = Product(productID: 3, name: "Three", price: 4.99)
+var product4 = Product(productID: 4, name: "Four", price: 4.99)
+
+var cart1 = Cart(cartID: 1)
+var cart2 = Cart(cartID: 2)
+
+var user1 = User(userID: 1, username: "Username1", cart: cart1)
+var user2 = User(userID: 2, username: "Username2", cart: cart2)
+
+cart1.addToCart(product: product1)
+cart1.addToCart(product: product2)
+cart2.addToCart(product: product3)
+cart2.addToCart(product: product4)
+
+user1.cart.sumBasket()
+user2.cart.sumBasket()
+//print(user1.cart.sumBasket())
+
+user1.checkout()
+user2.checkout()
+//user1.cart.sumBasket()
+//user2.cart.sumBasket()
+
+
+// Bonus
+
+// 1. Class-ი სახელით Animal, with properties: name, species, age. ამ class აქვს:
+//Designated init ამ properties ინიციალიზაციისთვის.
+//Method makeSound() რომელიც დაგვი-print-ავს ცხოველის ხმას.
+
+class Animal {
+    var name: String
+    var species: String
+    var age: Int
+    
+    init(name: String, species: String, age: Int) {
+        self.name = name
+        self.species = species
+        self.age = age
+    }
+    
+    func makeSound() {
+        print("sound 🐶")
+    }
+}
+
+//2. Animal-ის child class სახელად Mammal (ძუძუმწოვრები).
+//დამატებითი String property -> furColor.
+//Override method makeSound() სადაც აღწერთ შესაბამის ხმას.
+//Init-ი -> სახელით, ასაკით, ბეწვის ფერით.
+//convenience init -> სახელით, ბეწვის ფერით.
+
+class Mammal: Animal {
+    var furColor: String
+    
+    override func makeSound() {
+        print("🦭")
+    }
+    
+    init(name: String, age: Int, furColor: String) {
+        self.furColor = furColor
+        super.init(name: name, species: "", age: age)
+    }
+    
+    convenience init(name: String, furColor: String) {
+        self.init(name: name, age: 10, furColor: furColor)
+    }
+}
+
+//3. Animal-ის child class: Bird.
+//დამატებითი Bool property: canFly.
+//Override method makeSound() სადაც ავღწერ შესაბამის ხმას.
+//Init -> სახელით, ასაკით, შეუძლია თუ არა ფრენა.
+//convenience init -> სახელით, შეუძლია თუ არა ფრენა.
+
+class Bird: Animal {
+    var canFly: Bool
+    
+    override func makeSound() {
+        print("🦅")
+    }
+    
+    init(name: String, age: Int, canFly: Bool) {
+        self.canFly = canFly
+        super.init(name: name, species: "", age: age)
+    }
+    
+    convenience init(name: String, furColor: String) {
+        self.init(name: name, age: 10, canFly: true)
+    }
+}

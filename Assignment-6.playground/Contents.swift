@@ -6,6 +6,8 @@ import Cocoa
 //Method რომელიც ნიშნავს წიგნს როგორც borrowed-ს.
 //Method რომელიც ნიშნავს წიგნს როგორც დაბრუნებულს.
 
+// ❗️ ბევვრგან print მიწერია, არ იყო დავალებაში მარა უფრო მარტივი იქნება აღსაქმელად და აღარ წავშალე. ❗️
+
 class Book {
     var bookID: Int
     var title: String
@@ -337,6 +339,11 @@ class Animal {
     func makeSound() {
         print("sound 🐶")
     }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 //2. Animal-ის child class სახელად Mammal (ძუძუმწოვრები).
@@ -360,6 +367,10 @@ class Mammal: Animal {
     convenience init(name: String, furColor: String) {
         self.init(name: name, age: 10, furColor: furColor)
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Animal class არის აბსტრაქტული და არ უნდა იყოს მისი შექმნა პირდაპირ შესაძლებელი.")
+    }
 }
 
 //3. Animal-ის child class: Bird.
@@ -372,7 +383,7 @@ class Bird: Animal {
     var canFly: Bool
     
     override func makeSound() {
-        print("🦅")
+        print("🐥")
     }
     
     init(name: String, age: Int, canFly: Bool) {
@@ -383,4 +394,114 @@ class Bird: Animal {
     convenience init(name: String, furColor: String) {
         self.init(name: name, age: 10, canFly: true)
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Animal class არის აბსტრაქტული და არ უნდა იყოს მისი შექმნა პირდაპირ შესაძლებელი.")
+    }
+}
+
+//4. Animal-ის child class: Reptile.
+//დამატებითი Bool property: isColdBlooded.
+//Override method makeSound() სადაც ავღწერ შესაბამის ხმას.
+//Failable Init თუ რეპტილიას ასაკი ნაკლებია 0-ზე ვაბრუნებთ nil-ს.
+
+class Reptile: Animal {
+    var isColdBlooded: Bool
+    
+    override func makeSound() {
+        print("🦖")
+    }
+    
+    init?(name: String, species: String, age: Int, isColdBlooded: Bool) {
+        if age > 10 { return nil }
+        self.isColdBlooded = isColdBlooded
+        super.init(name: name, species: species, age: age)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Animal class არის აბსტრაქტული და არ უნდა იყოს მისი შექმნა პირდაპირ შესაძლებელი.")
+    }
+}
+
+//5. Mammal-ის child class: Lion.
+//დამატებით String property: maneColor.
+//Override მეთოდი makeSound() სადაც ავღწერ შესაბამის ხმას.
+
+class Lion: Mammal {
+    var maneColor: String
+    
+    override func makeSound() {
+        print("🦁")
+    }
+    
+    init(name: String, age: Int, furColor: String, maneColor: String) {
+        self.maneColor = maneColor
+        super.init(name: name, age: age, furColor: furColor)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Animal class არის აბსტრაქტული და არ უნდა იყოს მისი შექმნა პირდაპირ შესაძლებელი.")
+    }
+}
+
+//6. Bird-ის child class: Eagle.
+//დამატებით Double property: wingspan.
+//Override მეთოდი makeSound() სადაც ავღწერ შესაბამის ხმას.
+
+class Eagle: Bird {
+    var wingspan: Double
+    
+    override func makeSound() {
+        print("🦅")
+    }
+    
+    init(name: String, age: Int, canFly: Bool, wingspan: Double) {
+        self.wingspan = wingspan
+        super.init(name: name, age: age, canFly: canFly)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Animal class არის აბსტრაქტული და არ უნდა იყოს მისი შექმნა პირდაპირ შესაძლებელი.")
+    }
+}
+
+//7. Reptil-ის child class: Snake.
+//დამატებით Double property: length.
+//Override მეთოდი makeSound() სადაც ავღწერ შესაბამის ხმას.
+
+class Snake: Reptile {
+    var length: Double
+    
+    override func makeSound() {
+        print("🐍")
+    }
+    
+    init?(name: String, species: String, age: Int, isColdBlooded: Bool, length: Double) {
+        self.length = length
+        super.init(name: name, species: species, age: age, isColdBlooded: isColdBlooded)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("Animal class არის აბსტრაქტული და არ უნდა იყოს მისი შექმნა პირდაპირ შესაძლებელი.")
+    }
+}
+
+//8. აბსტრაქციისათვის Animal class დავუმატოთ required init() შიგნით აღწერილი fatal error-ით სადაც ვიტყვით რომ Animal class არის აბსტრაქტული და არ უნდა იყოს მისი შექმნა პირდაპირ შესაძლებელი.
+
+//9. შევქმნათ ზოოპარკის ცხოველების Array, დავამატოთ მასში სხვადასხვა სახის ცხოველები: 2-2 Mammal, Bird, Reptile ასევე შევქმნათ 1-1 Lion, Eagle, Snake.
+
+var animalArray = [
+    Mammal(name: "Mammal1", age: 1, furColor: "color1"),
+    Mammal(name: "Mammal2", age: 2, furColor: "color2"),
+    Bird(name: "Bird1", age: 3, canFly: true),
+    Bird(name: "Bird2", age: 4, canFly: true),
+    Reptile(name: "Reptile1", species: "Reptile", age: 5, isColdBlooded: true),
+    Reptile(name: "Reptile2", species: "Reptile", age: 6, isColdBlooded: true),
+    Lion(name: "Lion1", age: 7, furColor: "yellow", maneColor: "black"),
+    Eagle(name: "Eagle", age: 8, canFly: true, wingspan: 10.0),
+    Snake(name: "Snake", species: "Snake", age: 9, isColdBlooded: true, length: 10.0)
+]
+//10. დავბეჭდოთ ჩვენი Array-იდან, ყველა ცხოველის სახელი, სახეობა, ასაკი, და ასე გამოვიძახოთ makeSound მეთოდი.
+
+animalArray.forEach { print($0?.name, $0?.species, $0?.age, $0?.makeSound())
 }

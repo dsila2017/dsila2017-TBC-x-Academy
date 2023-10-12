@@ -75,6 +75,30 @@ struct SpiderMan: Superhero {
     }
 }
 
+struct SpiderWoman: Superhero {
+    
+    var name: String
+    var alias: String
+    var isEvil: Bool
+    var superPowers: [String : Int]
+    var damage: Int
+    var icon: String
+    var superDamege: Int
+    
+    mutating func attack(target: SuperEnemy) -> Int {
+        self.damage = Int.random(in: 20...40)
+        target.hitPoints -= damage
+        return target.hitPoints
+    }
+    mutating func performSuperPower(superEnemy: SuperEnemy) -> Int {
+        var randomSuper = self.superPowers.randomElement()
+        superEnemy.hitPoints -= randomSuper!.value
+        self.superDamege = randomSuper!.value
+        self.self.superPowers.removeValue(forKey: randomSuper!.key)
+        return superEnemy.hitPoints
+    }
+}
+
 //5. შევქმნათ class SuperherSquad,
 //რომელიც ჯენერიკ Superhero-s მიიღებს. მაგ: class SuperheroSquad<T: Superhero>.
 //
@@ -83,10 +107,10 @@ struct SpiderMan: Superhero {
 //შევქმნათ init-ი.
 //შევქმნათ method რომელიც ჩამოგვითვლის სქვადში არსებულ სუპერგმირებს.
 
-class SuperheroSquad<T: Superhero> {
-    var superHeroes: [T]
+class SuperheroSquad {
+    var superHeroes: [Superhero]
     
-    init(superHeroes: [T]) {
+    init(superHeroes: [Superhero]) {
         self.superHeroes = superHeroes
     }
     
@@ -108,7 +132,7 @@ class SuperheroSquad<T: Superhero> {
 //
 //ასევე კარგი იქნება თუ ორთაბრძოლის მიმდინარეობასაც დავბეჭდავთ და გამოვიყენებთ extension-ის მეთოდს.
 
-func simulateShowdown<T: Superhero> (superSquad: [T], superEnemy: SuperEnemy) {
+func simulateShowdown(superSquad: [Superhero], superEnemy: SuperEnemy) {
     for i in superSquad {
         var hero = i
         while superEnemy.hitPoints > 0 && hero.superPowers.count > 0 {
@@ -132,8 +156,8 @@ func simulateShowdown<T: Superhero> (superSquad: [T], superEnemy: SuperEnemy) {
 }
 
 var enemy = SuperEnemy(name: "Villain", hitPoints: 140)
-var superHero1 = SpiderMan(name: "SpiderMan1", alias: "Spider", isEvil: false, superPowers: ["Venom Blast": 10, "Inner Beast Attack": 20], damage: 0, icon: "🕷️", superDamege: 0)
-var superHero2 = SpiderMan(name: "SpiderMan2", alias: "Spider", isEvil: false, superPowers: ["Blast Attack": 7, "Cutting Wave": 10, "Combined Attack": 20], damage: 0, icon: "🦸‍♀️", superDamege: 0)
-var superheroArray = [superHero1, superHero2]
+var superHero1 = SpiderMan(name: "SpiderMan", alias: "Spider", isEvil: false, superPowers: ["Venom Blast": 10, "Inner Beast Attack": 20], damage: 0, icon: "🕷️", superDamege: 0)
+var superHero2 = SpiderWoman(name: "SpiderWoman", alias: "Spider", isEvil: false, superPowers: ["Blast Attack": 7, "Cutting Wave": 10, "Combined Attack": 20], damage: 0, icon: "🦸‍♀️", superDamege: 0)
+var superheroArray: [Superhero] = [superHero1, superHero2]
 
 simulateShowdown(superSquad: superheroArray, superEnemy: enemy)

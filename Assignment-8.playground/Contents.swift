@@ -1,4 +1,23 @@
-import Foundation
+import Cocoa
+
+//4-StationModule-ი
+//With properties: moduleName: String და drone: Drone? (optional).
+//Method რომელიც დრონს მისცემს თასქს.
+
+class StationModule {
+    var moduleName: String
+    weak var drone: Drone?
+    
+    init(moduleName: String, drone: Drone? = nil) {
+        self.moduleName = moduleName
+        self.drone = drone
+    }
+    
+    func assignTask (task: String) {
+        if let drone = self.drone {
+            drone.task = task}
+    }
+}
 
 //1-ControlCenter-ი.
 //With properties: isLockedDown: Bool და securityCode: String, რომელშიც იქნება რაღაც პაროლი შენახული.
@@ -7,7 +26,7 @@ import Foundation
 
 class ControlCenter: StationModule {
     var isLockedDown: Bool
-    var securityCode: String
+    private var securityCode: String
     
     init(isLockedDown: Bool, securityCode: String, moduleName: String, drone: Drone? = nil) {
         self.isLockedDown = isLockedDown
@@ -23,7 +42,11 @@ class ControlCenter: StationModule {
     }
     
     func checkLockdown() {
-        print("Lockdown Status: \(isLockedDown)")
+        if isLockedDown == true {
+            print("Lockdown Status: \(isLockedDown) 🔐")
+        } else {
+            print("Lockdown Status: \(isLockedDown) 🔓")
+        }
     }
 }
 
@@ -62,26 +85,8 @@ class LifeSupportSystem: StationModule {
     }
     
     func checkOxygenLevel () -> Int {
-        self.oxygenLevel
-    }
-}
-
-//4-StationModule-ი
-//With properties: moduleName: String და drone: Drone? (optional).
-//Method რომელიც დრონს მისცემს თასქს.
-
-class StationModule {
-    var moduleName: String
-    var drone: Drone?
-    
-    init(moduleName: String, drone: Drone? = nil) {
-        self.moduleName = moduleName
-        self.drone = drone
-    }
-    
-    func assignTask (task: String) {
-        if let drone = self.drone {
-            drone.task = task}
+        print("Oxygen Level \(oxygenLevel)% 🫧")
+        return oxygenLevel
     }
 }
 
@@ -108,10 +113,10 @@ class Drone {
     
     func hasTask() -> Bool {
         if task != nil {
-            print("Drone has task: \(task ?? "No Task")")
+            print("Drone has task: \(task!) 🚀")
             return true
         } else {
-            print("Drone has no task")
+            print("Drone has no task 💤")
             return false
         }
     }
@@ -129,14 +134,8 @@ class OrbitronSpaceStation {
     var researchLab = ResearchLab(sampleArray: ["moonSample"], moduleName: "researchModule", drone: researchLabDrone)
     var lifeSupportSystem = LifeSupportSystem(oxygenLevel: 98, moduleName: "lifeSupportSystemModule", drone: lifeSupportSystemDrone)
     
-//    init(controlCenter: ControlCenter, researchLab: ResearchLab, lifeSupportSystem: LifeSupportSystem) {
-//        self.controlCenter = controlCenter
-//        self.researchLab = researchLab
-//        self.lifeSupportSystem = lifeSupportSystem
-//    }
-    
-    func lock() {
-        controlCenter.isLockedDown = true
+    func lock(code: String) {
+        controlCenter.lockdown(securityCode: code)
     }
 }
 
@@ -150,18 +149,14 @@ class OrbitronSpaceStation {
 class MissionControl {
     var spaceStation: OrbitronSpaceStation?
     
-    init(spaceStation: OrbitronSpaceStation? = nil) {
-        self.spaceStation = spaceStation
-    }
-    
     func connectStation(station: OrbitronSpaceStation) {
-        self.spaceStation = station
+        spaceStation = station
     }
     func requestControlCenterStatus() {
-        self.spaceStation!.controlCenter.checkLockdown()
+        spaceStation!.controlCenter.checkLockdown()
     }
     func requestOxygenStatus(oxygenStatus: OrbitronSpaceStation) {
-        self.spaceStation!.lifeSupportSystem.oxygenLevel
+        spaceStation!.lifeSupportSystem.oxygenLevel
     }
     func requestDroneStatus(module: StationModule) {
         module.drone?.hasTask()
@@ -190,4 +185,5 @@ missionControl.spaceStation?.researchLab.drone?.hasTask()
 missionControl.spaceStation?.lifeSupportSystem.drone?.hasTask()
 missionControl.spaceStation?.lifeSupportSystem.checkOxygenLevel()
 missionControl.spaceStation?.controlCenter.lockdown(securityCode: "1234")
+//missionControl.spaceStation?.lock(code: "1234")
 missionControl.spaceStation?.controlCenter.checkLockdown()

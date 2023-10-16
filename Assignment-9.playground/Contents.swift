@@ -60,7 +60,6 @@ class PirateShip: Cannons {
             print("Not enough cannons 😭")
         }
     }
-    
 }
 
 class CargoManager: CargoManaging {

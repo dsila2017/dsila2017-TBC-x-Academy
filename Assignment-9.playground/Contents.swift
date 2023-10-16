@@ -228,20 +228,20 @@ var crewManager = CrewManager()
 
 var myShip = PirateShip(name: "The Black Pearl", cannonsCount: 100, cargoManager: cargoManager, crewManager: crewManager)
 
-var cargo1 = Cargo(name: "Swords")
-var cargo2 = Cargo(name: "Food")
-var cargo3 = Cargo(name: "Drinks")
-var cargo4 = Cargo(name: "Gunpowder")
+var cargo1 = Cargo(name: "Swords ⚔️")
+var cargo2 = Cargo(name: "Food 🍗")
+var cargo3 = Cargo(name: "Drinks 🍺")
+var cargo4 = Cargo(name: "Gunpowder 💣")
 
 myShip.addCargo(cargo: cargo1)
 myShip.addCargo(cargo: cargo2)
 myShip.addCargo(cargo: cargo3)
 myShip.addCargo(cargo: cargo4)
 
-var crewMember1 = Pirate(nickname: "crewMember1")
-var crewMember2 = Pirate(nickname: "crewMember2")
-var crewMember3 = Pirate(nickname: "crewMember3")
-var crewMember4 = Pirate(nickname: "crewMember4")
+var crewMember1 = Pirate(nickname: "Blackbeard 🤺")
+var crewMember2 = Pirate(nickname: "Ching Shih 🦜")
+var crewMember3 = Pirate(nickname: "Sir Francis Drake 🗡️")
+var crewMember4 = Pirate(nickname: "Black Sam Bellamy 🏴‍☠️")
 
 myShip.addCrew(member: crewMember1)
 myShip.addCrew(member: crewMember2)
@@ -253,7 +253,7 @@ myShip.listCargo()
 
 var treasureMap = TreasureMap(x: 140, y: 400)
 var pirateCode = PirateCode()
-var seaAdventure = SeaAdventure(adventureType: "Approaching FlyingDutchman")
+var seaAdventure = SeaAdventure(adventureType: "Approaching FlyingDutchman ⚓️")
 
 var startx = 10
 var starty = 40

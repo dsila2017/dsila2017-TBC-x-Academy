@@ -34,7 +34,7 @@ class ViewController: UIViewController {
                 self.number2.backgroundColor = .white
                 resultLabel.textColor = .white
                 resultLabel.text = "\(calculateResult(num1: number1, num2: number2))"
-            } else { shake() }
+            } else { error() }
         } else if let number1 = Int(number1.text!) as? Int {
             self.number1.backgroundColor = .white
             number2.backgroundColor = .red
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
             number1.shake()
         }
             else {
-            shake()
+                error()
         }
     }
     
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func shake() {
+    func error() {
         number1.backgroundColor = .red
         number2.backgroundColor = .red
         resultLabel.textColor = .red
@@ -86,7 +86,6 @@ class ViewController: UIViewController {
         number1.shake()
         number2.shake()
     }
-    
 }
 
 extension UIView {

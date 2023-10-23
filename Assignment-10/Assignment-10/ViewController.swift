@@ -29,10 +29,12 @@ class ViewController: UIViewController {
     
     @IBAction func resultButton(_ sender: UIButton) {
         if let number1 = Int(number1.text!) as? Int, let number2 = Int(number2.text!) as? Int {
-            self.number1.backgroundColor = .white
-            self.number2.backgroundColor = .white
-            resultLabel.textColor = .white
-            resultLabel.text = "\(calculateResult(num1: number1, num2: number2))"
+            if number1 > 0 && number2 > 0 {
+                self.number1.backgroundColor = .white
+                self.number2.backgroundColor = .white
+                resultLabel.textColor = .white
+                resultLabel.text = "\(calculateResult(num1: number1, num2: number2))"
+            } else { shake() }
         } else if let number1 = Int(number1.text!) as? Int {
             self.number1.backgroundColor = .white
             number2.backgroundColor = .red
@@ -43,12 +45,7 @@ class ViewController: UIViewController {
             number1.shake()
         }
             else {
-            number1.backgroundColor = .red
-            number2.backgroundColor = .red
-            resultLabel.textColor = .red
-            resultLabel.text = "Numbers Required!"
-            number1.shake()
-            number2.shake()
+            shake()
         }
     }
     
@@ -79,6 +76,15 @@ class ViewController: UIViewController {
         } else {
             return calculateGCM(num1: num1, num2: num2)
         }
+    }
+    
+    func shake() {
+        number1.backgroundColor = .red
+        number2.backgroundColor = .red
+        resultLabel.textColor = .red
+        resultLabel.text = "Positive Numbers Required!"
+        number1.shake()
+        number2.shake()
     }
     
 }

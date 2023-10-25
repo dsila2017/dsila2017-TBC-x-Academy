@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: @IBOutlets
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var product: UILabel!
     @IBOutlet weak var productWith: UILabel!
@@ -17,7 +18,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var productDescription: UILabel!
     @IBOutlet weak var price: UILabel!
     
+    // MARK: Properties
     var selected: Drink?
+    var tea = Drink(image: "Tea", productName: "Green Tea", productWith: "Jasmine", rating: 4.9, reviewCount: 40, price: 4.79, size: .M, description: "Good Tea")
+    var coffee = Drink(image: "coffee", productName: "coffee", productWith: "Milk", rating: 4.9, reviewCount: 140, price: 9.49, size: .M, description: "coffee")
+    var whiskey = Drink(image: "whiskey", productName: "Whiskey", productWith: "Nothing", rating: 4.9, reviewCount: 70, price: 40.99, size: .M, description: "Irish Whiskey")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +31,7 @@ class ViewController: UIViewController {
         
     }
     
+    // MARK: @IBActions
     @IBAction func selectDrink(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -56,11 +62,8 @@ class ViewController: UIViewController {
     @IBAction func favorite(_ sender: UIButton) {
     }
     
-    var tea = Drink(image: "Tea", productName: "Green Tea", productWith: "Jasmine", rating: 4.9, reviewCount: 40, price: 4.79, size: .M, description: "Good Tea")
-    var coffee = Drink(image: "coffee", productName: "coffee", productWith: "Milk", rating: 4.9, reviewCount: 140, price: 9.49, size: .M, description: "coffee")
-    var whiskey = Drink(image: "whiskey", productName: "Whiskey", productWith: "Nothing", rating: 4.9, reviewCount: 70, price: 40.99, size: .M, description: "Irish Whiskey")
-    
-    private func setup(drink: Drink) {
+    // MARK: Methods
+    func setup(drink: Drink) {
         selected = drink
         image.image = UIImage(named: drink.image)
         product.text = drink.productName

@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     var coffee = Drink(image: "coffee", productName: "coffee", productWith: "Milk", rating: 4.9, reviewCount: 140, price: 9.49, size: .M, description: "coffee")
     var whiskey = Drink(image: "whiskey", productName: "Whiskey", productWith: "Nothing", rating: 4.9, reviewCount: 70, price: 40.99, size: .M, description: "Irish Whiskey")
     
-    func setup(drink: Drink) {
+    private func setup(drink: Drink) {
         selected = drink
         image.image = UIImage(named: drink.image)
         product.text = drink.productName

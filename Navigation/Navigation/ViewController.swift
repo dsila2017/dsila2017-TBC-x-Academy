@@ -117,7 +117,6 @@ class ViewController: UIViewController {
     let socialImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Social")
-        
         return imageView
     }()
     
@@ -140,6 +139,7 @@ class ViewController: UIViewController {
         addViews()
     }
     
+    //MARK: Methods
     func setup() {
         topView.translatesAutoresizingMaskIntoConstraints = false
         middleView.translatesAutoresizingMaskIntoConstraints = false
@@ -227,11 +227,10 @@ class ViewController: UIViewController {
         setup()
     }
     
-    
-    
     @objc func signIn() {
-        let vc = secondVC()
-        navigationController?.pushViewController(vc, animated: true)
+        if  emailTextField.text?.count != 0 && passwordTextField.text?.count != 0 {
+            let vc = HomePage()
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
-

@@ -7,10 +7,9 @@
 
 import UIKit
 
-class secondVC: UIViewController {
-
-    //MARK: Views
+class HomePage: UIViewController {
     
+    //MARK: Views
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -44,9 +43,10 @@ class secondVC: UIViewController {
         stackView.addArrangedSubview(presentButton)
         stackView.addArrangedSubview(pushButton)
         setup()
-
+        
     }
     
+    //MARK: Methods
     func setup() {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,10 +65,24 @@ class secondVC: UIViewController {
     
     @objc func signInPush() {
         let vc = paletteVC()
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     @objc func signInPresent() {
         let vc = paletteVC()
+        vc.delegate = self
         self.present(vc, animated: true)
+    }
+}
+
+extension HomePage: changeColor {
+    func changeButton(color: UIColor) {
+        self.presentButton.tintColor = color
+        self.pushButton.tintColor = color
+    }
+    
+    func changeBackground(color: UIColor) {
+        self.view.backgroundColor = color
     }
 }

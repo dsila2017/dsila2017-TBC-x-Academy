@@ -9,22 +9,22 @@ import UIKit
 
 class AddNewItemToListViewController: UIViewController {
     
-    lazy var stackView: UIStackView = {
+    //MARK: Views
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nameLabel, textField, HstackView, chooseButton, saveButton])
         stackView.axis = .vertical
-        //stackView.distribution = .fill
         stackView.spacing = 20
         return stackView
     }()
     
-lazy var HstackView: UIStackView = {
-    let stackView = UIStackView(arrangedSubviews: [photoLabel, imageView])
-    stackView.axis = .horizontal
-    stackView.distribution = .fillEqually
-    return stackView
-}()
+    private lazy var HstackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [photoLabel, imageView])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
     
-    let textField: UITextField = {
+    private let textField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Please enter song name"
         textField.layer.cornerRadius = 10
@@ -34,26 +34,26 @@ lazy var HstackView: UIStackView = {
         return textField
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Song name:"
         return label
     }()
     
-    let photoLabel: UILabel = {
+    private let photoLabel: UILabel = {
         let label = UILabel()
         label.text = "Choose Photo:"
         return label
     }()
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let image = UIImageView()
         //image.image = .init(systemName: "photo.badge.plus")
         image.tintColor = .black
         return image
     }()
     
-    let chooseButton: UIButton = {
+    private let chooseButton: UIButton = {
         let button = UIButton()
         button.setTitle("Choose", for: .normal)
         button.addTarget(self, action: #selector(chooseImage), for: .touchUpInside)
@@ -62,7 +62,7 @@ lazy var HstackView: UIStackView = {
         return button
     }()
     
-    let saveButton: UIButton = {
+    private let saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Save", for: .normal)
         button.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
@@ -72,21 +72,23 @@ lazy var HstackView: UIStackView = {
     }()
     
     var delegate: addItem?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         setupView()
     }
     
-    func setupView() {
+    //MARK: Methods
+    private func setupView() {
         
         view.addSubview(stackView)
         viewConstraints()
     }
     
     private func viewConstraints() {
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -98,10 +100,7 @@ lazy var HstackView: UIStackView = {
             
             HstackView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.4),
             
-            
-            
         ])
-        
     }
     
     @objc func chooseImage() {
@@ -119,7 +118,6 @@ lazy var HstackView: UIStackView = {
             alert()
         }
     }
-
 }
 
 extension AddNewItemToListViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -131,6 +129,7 @@ extension AddNewItemToListViewController : UIImagePickerControllerDelegate, UINa
 }
 
 extension UIView {
+    
     func shake() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)

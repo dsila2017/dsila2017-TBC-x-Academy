@@ -9,11 +9,11 @@ import UIKit
 
 class ItemDetailsViewController: UIViewController {
     
-    lazy var stackView: UIStackView = {
+    //MARK: Views
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [nameLabel, imageView ])
         stackView.axis = .vertical
         stackView.spacing = 20
-        //stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -32,7 +32,6 @@ class ItemDetailsViewController: UIViewController {
         return image
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +39,7 @@ class ItemDetailsViewController: UIViewController {
         setupView()
     }
     
+    //MARK: Methods
     private func setupView() {
         
         view.addSubview(stackView)
@@ -58,8 +58,6 @@ class ItemDetailsViewController: UIViewController {
             
             imageView.heightAnchor.constraint(equalTo: imageView.heightAnchor),
             nameLabel.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.1)
-            
-            
             
         ])
         

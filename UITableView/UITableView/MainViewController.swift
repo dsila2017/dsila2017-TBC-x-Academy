@@ -7,27 +7,27 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class MainViewController: UIViewController {
+    
     //MARK: Views
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topNavBar, UITableView])
         stackView.axis = .vertical
         stackView.distribution = .fill
         return stackView
     }()
     
-    let topNavBar: UIView = {
+    private let topNavBar: UIView = {
         let topNavBar = UIView()
         return topNavBar
     }()
     
-    let UITableView: UITableView = {
+    private let UITableView: UITableView = {
         let UITableView = UITableView()
         return UITableView
     }()
     
-    let addButton: UIButton = {
+    private let addButton: UIButton = {
         let button = UIButton()
         button.setImage(.add, for: .normal)
         button.layer.cornerRadius = 20
@@ -47,6 +47,7 @@ class ViewController: UIViewController {
         setupView()
     }
     
+    //MARK: Methods
     private func setupView() {
         view.addSubview(stackView)
         topNavBar.addSubview(addButton)
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
     }
     
     private func registerTableViewCells() {
-        UITableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        UITableView.register(CustomCell.self, forCellReuseIdentifier: "CustomCell")
     }
     
     private func setupTableView(){
@@ -89,26 +90,20 @@ class ViewController: UIViewController {
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         musicList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel!.text = musicList[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
+        cell.name.text = musicList[indexPath.row].name
+        cell.cellImageView.image = musicList[indexPath.row].image
         
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        
-//        return auto
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ItemDetailsViewController()
@@ -121,18 +116,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         "Favourites"
     }
-    
-    
-    
 }
 
-extension ViewController: addItem {
+extension MainViewController: addItem {
     func addItem(music: Music) {
         musicList.append(music)
         UITableView.reloadData()
     }
-    
-    
 }
 
 protocol addItem {

@@ -216,7 +216,14 @@ final class MovieDetailViewController: UIViewController {
     func configure(with: Movie) {
         mainNavBarTitle.text = with.name
         imageView.image = with.image
+        ratingLabel.text = "\(with.rating)"
+        descriptionLabel.text = with.description
+        certificateResultLabel.text = with.certificate
+        runtimeResultLabel.text = "\(with.runtime ?? 0)"
+        releaseResultLabel.text = "\(with.release ?? 0)"
         genreResultLabel.text = "\(with.genre)"
+        directorResultLabel.text = with.director
+        castResultLabel.text = with.cast
     }
     
     //MARK: - Private Methods

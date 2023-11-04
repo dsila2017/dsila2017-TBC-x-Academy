@@ -131,7 +131,6 @@ extension HomeViewController: favouriteDelegate {
                 cell.favButton.tintColor = .gray
                 cell.favButton.setImage(.init(systemName: "heart"), for: .normal)
                 Movie.movies[indexPath.row].favourite = false
-                
             } else {
                 cell.favButton.tintColor = .red
                 cell.favButton.setImage(.init(systemName: "heart.fill"), for: .normal)

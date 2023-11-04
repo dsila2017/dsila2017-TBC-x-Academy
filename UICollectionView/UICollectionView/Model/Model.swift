@@ -10,7 +10,8 @@ import UIKit
 enum Genre {
     case Action, Adventure, Horror, Comedy
 }
-class Movie {
+
+final class Movie {
     var name: String
     var image: UIImage?
     var favourite: Bool?

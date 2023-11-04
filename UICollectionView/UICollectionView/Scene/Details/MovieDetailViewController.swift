@@ -8,7 +8,7 @@
 import UIKit
 
 final class MovieDetailViewController: UIViewController {
-
+    
     //MARK: - Views
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [imageView, ratingStackView, descriptionLabel, detailsStackView, selectSession])
@@ -191,7 +191,7 @@ final class MovieDetailViewController: UIViewController {
         return label
     }()
     
-    lazy var selectSession: UIButton = {
+    private lazy var selectSession: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Select Session", for: .normal)
@@ -206,14 +206,10 @@ final class MovieDetailViewController: UIViewController {
     
     var mainNavBarTitle = UILabel()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         setupMainView()
-        
     }
     
     //MARK: - Methods
@@ -245,7 +241,7 @@ final class MovieDetailViewController: UIViewController {
             ratingStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.1),
             descriptionLabel.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.12),
             detailsStackView.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 0.3),
-
+            
         ])
     }
     
@@ -255,8 +251,4 @@ final class MovieDetailViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         self.navigationController?.navigationBar.tintColor = .white
     }
-    
-
-    
-
 }

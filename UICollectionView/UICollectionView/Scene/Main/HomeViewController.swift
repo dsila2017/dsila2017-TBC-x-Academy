@@ -7,14 +7,23 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     //MARK: - Private Views
     lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [collectionViewTitle, mainCollectionView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(mainCollectionView)
+        stackView.axis = .vertical
         return stackView
+    }()
+    
+    private let collectionViewTitle: UILabel = {
+        let label = UILabel()
+        label.text = "Now in cinemas"
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textColor = .white
+        label.textAlignment = .left
+        return label
     }()
     
     let mainCollectionView: UICollectionView = {
@@ -31,7 +40,7 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         view.backgroundColor = UIColor(rgb: 0x1A2232)
         setupNavBar()
         setupMainView()
@@ -78,21 +87,19 @@ final class ViewController: UIViewController {
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
+            collectionViewTitle.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1)
+            
         ])
-    }
-    
-    @objc func done() {
-        print("Done")
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         Movie.movies.count
     }
 }
 
-extension ViewController: UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let movie = Movie.movies[indexPath.row]
         if let cell = mainCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? MovieCell {
@@ -104,10 +111,10 @@ extension ViewController: UICollectionViewDelegate {
     }
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: 164, height: 278)
+        CGSize(width: (UIScreen.main.bounds.size.width - 30 * 2 ) / 2 , height: (UIScreen.main.bounds.size.width - 30 * 2 ) / 2 * 1.7)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -117,7 +124,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ViewController: favouriteDelegate {
+extension HomeViewController: favouriteDelegate {
     func favPressed(cell: MovieCell) {
         if let indexPath = mainCollectionView.indexPath(for: cell) {
             if Movie.movies[indexPath.row].favourite == true {
@@ -132,6 +139,4 @@ extension ViewController: favouriteDelegate {
             }
         }
     }
-    
-    
 }

@@ -67,7 +67,7 @@ final class MovieCell: UICollectionViewCell {
     
     private let favourite = Bool()
     
-    weak var delegate: ViewController?
+    weak var delegate: HomeViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,6 +76,7 @@ final class MovieCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
         setupCell()
     }
     

@@ -19,16 +19,16 @@ class NoteListViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        view.backgroundColor = .red
         mainViewSetup()
     }
     
     //MARK: - Private Methods
     private func mainViewSetup() {
         view.addSubview(mainTableView)
-        mainTableView.backgroundColor = .green
+        view.backgroundColor = .white
         setupTableView()
         setupConstraints()
+        navBarSetup()
     }
     
     private func setupTableView() {
@@ -48,6 +48,21 @@ class NoteListViewController: UIViewController {
             mainTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
         ])
+    }
+    
+    private func navBarSetup() {
+        let button: UIButton = {
+            let button = UIButton()
+            button.setImage(.add, for: .normal)
+            button.setTitleColor(.systemBlue, for: .normal)
+            button.addAction(UIAction(handler: { [weak self] _ in
+                let vc = AddNoteViewController()
+                vc.delegate = self
+                self?.navigationController?.present(vc, animated: true)
+            }), for: .touchUpInside)
+            return button
+        }()
+        navigationItem.setRightBarButton(UIBarButtonItem(customView: button), animated: true)
     }
 }
 
@@ -75,6 +90,28 @@ extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
         vc.configure(note: model)
         vc.note = model
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            Note.Notes.remove(at: indexPath.row)
+            tableView.endUpdates()
+        }
+    }
+    
+    
+}
+
+extension NoteListViewController: refreshDelegate {
+    func reload() {
+        self.mainTableView.reloadData()
     }
     
     

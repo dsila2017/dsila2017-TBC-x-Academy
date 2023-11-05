@@ -16,7 +16,7 @@ class Note {
         self.note = note
     }
     
-    static let Notes = [
+    static var Notes = [
         
         Note(
             name: "Note1",

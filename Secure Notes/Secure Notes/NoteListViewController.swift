@@ -1,0 +1,81 @@
+//
+//  NoteListViewController.swift
+//  Secure Notes
+//
+//  Created by David on 11/5/23.
+//
+
+import UIKit
+
+class NoteListViewController: UIViewController {
+    
+    //MARK: - Private Views
+    private let mainTableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        view.backgroundColor = .red
+        mainViewSetup()
+    }
+    
+    //MARK: - Private Methods
+    private func mainViewSetup() {
+        view.addSubview(mainTableView)
+        mainTableView.backgroundColor = .green
+        setupTableView()
+        setupConstraints()
+    }
+    
+    private func setupTableView() {
+        mainTableView.delegate = self
+        mainTableView.dataSource = self
+        mainTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    }
+    
+    private func setupConstraints() {
+        mainTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            
+            mainTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            mainTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            mainTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+        ])
+    }
+}
+
+extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "My Notes"
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        Note.Notes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? UITableViewCell {
+            cell.textLabel?.text = Note.Notes[indexPath.row].name
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = Note.Notes[indexPath.row]
+        let vc = NoteDetailsViewController()
+        vc.configure(note: model)
+        vc.note = model
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+}

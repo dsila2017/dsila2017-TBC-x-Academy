@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoteListViewController: UIViewController {
+final class NoteListViewController: UIViewController {
     
     //MARK: - Private Views
     private let mainTableView: UITableView = {
@@ -18,7 +18,6 @@ class NoteListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         mainViewSetup()
     }
     
@@ -46,7 +45,7 @@ class NoteListViewController: UIViewController {
             mainTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mainTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mainTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
+            
         ])
     }
     
@@ -66,7 +65,7 @@ class NoteListViewController: UIViewController {
     }
 }
 
-extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
+extension NoteListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         "My Notes"
@@ -83,6 +82,9 @@ extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         return UITableViewCell()
     }
+}
+
+extension NoteListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = Note.Notes[indexPath.row]
@@ -105,14 +107,10 @@ extension NoteListViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.endUpdates()
         }
     }
-    
-    
 }
 
 extension NoteListViewController: refreshDelegate {
     func reload() {
         self.mainTableView.reloadData()
     }
-    
-    
 }

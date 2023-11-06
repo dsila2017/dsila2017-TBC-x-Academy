@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     //MARK: - Private Views
     private lazy var mainStackView: UIStackView = {
@@ -82,10 +82,35 @@ class LoginViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         button.layer.cornerRadius = 10
         button.addAction(UIAction(handler: { [weak self] _ in
-            let vc = NoteListViewController()
-            self?.navigationController?.pushViewController(vc, animated: true)
+            let account = self?.username.text ?? ""
+            let password = self?.password.text ?? ""
+            var gotPass = ""
             
-            //self?.alert()
+            if self?.checkUser(account: account) == true {
+                do {
+                    let data = try KeychainManager.getPassword(for: account)
+                    gotPass = String(decoding: data ?? Data(), as: UTF8.self)
+                    if password == gotPass {
+                        let vc = NoteListViewController()
+                        self?.navigationController?.pushViewController(vc, animated: true)
+                    } else {
+                        self?.passwordAlert()
+                    }
+                } catch {
+                    print("Error")
+                }
+            }   else {
+                UserDefaults.standard.set(true, forKey: account)
+                
+                do {
+                    try KeychainManager.save(account: account, password: password.data(using: .utf8) ?? Data())
+                    let vc = NoteListViewController()
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                    self?.alert()
+                } catch {
+                    print(error)
+                }
+            }
         }), for: .touchUpInside)
         return button
     }()
@@ -94,8 +119,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         setupMainView()
+        resetDefaults()
     }
     
     //MARK: - Private Methods
@@ -124,13 +150,34 @@ class LoginViewController: UIViewController {
             
         ])
     }
+    
+    private func checkUser(account: String) -> Bool {
+        if UserDefaults.standard.bool(forKey: account) {
+            return true
+        }
+        return false
+    }
 }
 
 extension LoginViewController {
     
     func alert() {
-        let alert = UIAlertController(title: "Error", message: "Please enter song name and choose a photo", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Hello", message: "\(username.text ?? "New User")", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Hi", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
+    func passwordAlert() {
+        let alert = UIAlertController(title: "Error", message: "Incorrect Password", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    func resetDefaults() {
+        let defaults = UserDefaults.standard
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+            defaults.removeObject(forKey: key)
+        }
     }
 }

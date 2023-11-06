@@ -9,6 +9,7 @@ import UIKit
 
 final class NoteDetailsViewController: UIViewController {
     
+    //MARK: - Private Views
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [noteNamelabel, noteView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,10 +39,9 @@ final class NoteDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         mainViewSetup()
-            navBarSetup()
+        navBarSetup()
     }
     
     //MARK: - Private Methods
@@ -59,11 +59,9 @@ final class NoteDetailsViewController: UIViewController {
                     self?.textField.isEditable = false
                     self?.editSave = false
                     button.setTitle("Edit", for: .normal)
-                    
                     if let note = self?.note {
                         note.note = self?.textField.text ?? ""
                     }
-                    
                 }
             }), for: .touchUpInside)
             return button
@@ -101,5 +99,5 @@ final class NoteDetailsViewController: UIViewController {
             textField.heightAnchor.constraint(equalTo: noteView.heightAnchor, multiplier: 0.7),
         ])
     }
-
+    
 }

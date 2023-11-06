@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		634C884D2AF7F4980035A1E8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C884C2AF7F4980035A1E8 /* Model.swift */; };
+		634C884F2AF8715E0035A1E8 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C884E2AF8715E0035A1E8 /* Keychain.swift */; };
 		635EEC6D2AF7CB6D00D9A9B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635EEC6C2AF7CB6D00D9A9B3 /* AppDelegate.swift */; };
 		635EEC6F2AF7CB6D00D9A9B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635EEC6E2AF7CB6D00D9A9B3 /* SceneDelegate.swift */; };
 		635EEC712AF7CB6D00D9A9B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635EEC702AF7CB6D00D9A9B3 /* LoginViewController.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		634C884C2AF7F4980035A1E8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		634C884E2AF8715E0035A1E8 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		635EEC692AF7CB6D00D9A9B3 /* Secure Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Secure Notes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		635EEC6C2AF7CB6D00D9A9B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		635EEC6E2AF7CB6D00D9A9B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		634C88502AF871DE0035A1E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				634C884C2AF7F4980035A1E8 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		634C88512AF871FB0035A1E8 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				635EEC702AF7CB6D00D9A9B3 /* LoginViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		634C88522AF872110035A1E8 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				635EEC802AF7CC0800D9A9B3 /* NoteListViewController.swift */,
+				635EEC822AF7CC1400D9A9B3 /* AddNoteViewController.swift */,
+				635EEC842AF7CC2200D9A9B3 /* NoteDetailsViewController.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		634C88532AF8721F0035A1E8 /* Keychain + UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				635EEC872AF7D3E600D9A9B3 /* UIColor Extension.swift */,
+				634C884E2AF8715E0035A1E8 /* Keychain.swift */,
+			);
+			path = "Keychain + UIColor";
+			sourceTree = "<group>";
+		};
+		634C88542AF8724D0035A1E8 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				634C88512AF871FB0035A1E8 /* Main */,
+				634C88522AF872110035A1E8 /* Notes */,
+				634C88532AF8721F0035A1E8 /* Keychain + UIColor */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		635EEC602AF7CB6D00D9A9B3 = {
 			isa = PBXGroup;
 			children = (
@@ -65,13 +112,9 @@
 			isa = PBXGroup;
 			children = (
 				635EEC862AF7CC2900D9A9B3 /* App */,
-				635EEC702AF7CB6D00D9A9B3 /* LoginViewController.swift */,
-				635EEC802AF7CC0800D9A9B3 /* NoteListViewController.swift */,
-				635EEC822AF7CC1400D9A9B3 /* AddNoteViewController.swift */,
-				635EEC842AF7CC2200D9A9B3 /* NoteDetailsViewController.swift */,
-				635EEC872AF7D3E600D9A9B3 /* UIColor Extension.swift */,
+				634C88502AF871DE0035A1E8 /* Model */,
+				634C88542AF8724D0035A1E8 /* Scene */,
 				635EEC752AF7CB6E00D9A9B3 /* Assets.xcassets */,
-				634C884C2AF7F4980035A1E8 /* Model.swift */,
 				635EEC772AF7CB6E00D9A9B3 /* LaunchScreen.storyboard */,
 				635EEC7A2AF7CB6E00D9A9B3 /* Info.plist */,
 			);
@@ -162,6 +205,7 @@
 				635EEC882AF7D3E600D9A9B3 /* UIColor Extension.swift in Sources */,
 				635EEC6D2AF7CB6D00D9A9B3 /* AppDelegate.swift in Sources */,
 				635EEC832AF7CC1400D9A9B3 /* AddNoteViewController.swift in Sources */,
+				634C884F2AF8715E0035A1E8 /* Keychain.swift in Sources */,
 				635EEC6F2AF7CB6D00D9A9B3 /* SceneDelegate.swift in Sources */,
 				635EEC852AF7CC2200D9A9B3 /* NoteDetailsViewController.swift in Sources */,
 				634C884D2AF7F4980035A1E8 /* Model.swift in Sources */,

@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol refreshDelegate {
+protocol refreshDelegate: AnyObject {
     func reload()
 }
 
-class AddNoteViewController: UIViewController {
-
+final class AddNoteViewController: UIViewController {
+    
     //MARK: - Private Views
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [topView, bottomView])
@@ -66,7 +66,6 @@ class AddNoteViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.addAction(UIAction(handler: { [weak self] _ in
             if (self?.noteLabel.text?.count)! > 0 && (self?.noteDescription.text?.count)! > 0 {
-                print(self?.noteLabel)
                 let note = Note(name: (self?.noteLabel.text)!, note: (self?.noteDescription.text)!)
                 Note.Notes.append(note)
                 self?.delegate?.reload()
@@ -75,8 +74,6 @@ class AddNoteViewController: UIViewController {
             else{
                 self?.alert()
             }
-            
-            //self?.alert()
         }), for: .touchUpInside)
         return button
     }()
@@ -84,16 +81,16 @@ class AddNoteViewController: UIViewController {
     let topView = UIView()
     let bottomView = UIView()
     
-    var delegate: refreshDelegate?
+    weak var delegate: refreshDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         setupMainView()
         
     }
     
+    //MARK: - Private Methods
     private func setupMainView() {
         view.backgroundColor = .white
         view.addSubview(mainStackView)

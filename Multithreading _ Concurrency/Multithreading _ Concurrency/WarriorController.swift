@@ -9,12 +9,19 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //MARK: - Private Properties
+    private var bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         Task {
-            await taskStarter()
+            
+            //MARK: - Version 1
+            await taskStarter1()
+            
+            //MARK: - Version 2
+            await taskStarter2()
         }
     }
     
@@ -46,22 +53,51 @@ class ViewController: UIViewController {
         let thread1 = Thread {
             objc_sync_enter(winnerWarrior)
             winnerWarrior.number = numbers.0
-            print("Winner Thread is thread1", winnerWarrior.number ?? 0)
+            print("Version 1: Winner Thread is thread1", winnerWarrior.number ?? 0)
         }
         
         let thread2 = Thread {
             objc_sync_enter(winnerWarrior)
             winnerWarrior.number = numbers.1
-            print("Winner Thread is thread2", winnerWarrior.number ?? 0)
+            print("Version 1: Winner Thread is thread2", winnerWarrior.number ?? 0)
         }
         thread1.start()
         thread2.start()
     }
     
-    private func taskStarter() async {
+    private func one(numbers: (Decimal, Decimal)) {
+        let winnerWarrior = Warrior(number: nil)
+        let newQueue = DispatchQueue(label: "Queue", attributes: .concurrent)
+        
+        newQueue.async { [self] in
+            
+            if bool == false {
+                bool = true
+                winnerWarrior.number = numbers.0
+                print("Version 2: Winner Thread is thread1", winnerWarrior.number ?? 0)
+            }
+        }
+        
+        newQueue.async { [self] in
+            
+            if bool == false {
+                bool = true
+                winnerWarrior.number = numbers.1
+                print("Version 2: Winner Thread is thread2", winnerWarrior.number ?? 0)
+            }
+        }
+    }
+    
+    private func taskStarter1() async {
         let tuple = await randomGenerator()
         let factorial = await factorialCounter(numbers: tuple)
         await awaitFunc(numbers: factorial)
+    }
+    
+    private func taskStarter2() async {
+        let tuple = await randomGenerator()
+        let factorial = await factorialCounter(numbers: tuple)
+        await one(numbers: factorial)
     }
     
     

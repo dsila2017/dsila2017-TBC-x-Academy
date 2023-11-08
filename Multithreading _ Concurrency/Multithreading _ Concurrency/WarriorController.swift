@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         return returnValue
     }
     
-    private func awaitFunc(numbers: (Decimal, Decimal)) async {
+    private func raceOne(numbers: (Decimal, Decimal)) async {
         
         let winnerWarrior = Warrior(number: nil)
         
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         thread2.start()
     }
     
-    private func one(numbers: (Decimal, Decimal)) {
+    private func raceTwo(numbers: (Decimal, Decimal)) {
         let winnerWarrior = Warrior(number: nil)
         let newQueue = DispatchQueue(label: "Queue", attributes: .concurrent)
         
@@ -91,13 +91,13 @@ class ViewController: UIViewController {
     private func taskStarter1() async {
         let tuple = await randomGenerator()
         let factorial = await factorialCounter(numbers: tuple)
-        await awaitFunc(numbers: factorial)
+        await raceOne(numbers: factorial)
     }
     
     private func taskStarter2() async {
         let tuple = await randomGenerator()
         let factorial = await factorialCounter(numbers: tuple)
-        await one(numbers: factorial)
+        await raceTwo(numbers: factorial)
     }
     
     

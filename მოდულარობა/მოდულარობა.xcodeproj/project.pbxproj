@@ -3,16 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		630BB8A22B0A75A8001757D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BB8A12B0A75A8001757D8 /* AppDelegate.swift */; };
 		630BB8A42B0A75A8001757D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BB8A32B0A75A8001757D8 /* SceneDelegate.swift */; };
 		630BB8A62B0A75A8001757D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BB8A52B0A75A8001757D8 /* ViewController.swift */; };
-		630BB8A92B0A75A8001757D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630BB8A72B0A75A8001757D8 /* Main.storyboard */; };
 		630BB8AB2B0A75A8001757D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 630BB8AA2B0A75A8001757D8 /* Assets.xcassets */; };
 		630BB8AE2B0A75A8001757D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630BB8AC2B0A75A8001757D8 /* LaunchScreen.storyboard */; };
+		630BB8B72B0A7635001757D8 /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = 630BB8B62B0A7635001757D8 /* NetworkManager */; };
+		630BB8BA2B0A76A3001757D8 /* CatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BB8B92B0A76A3001757D8 /* CatsModel.swift */; };
+		630BB8BC2B0A76AC001757D8 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630BB8BB2B0A76AC001757D8 /* ViewModel.swift */; };
+		630BB8C12B0A7983001757D8 /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = 630BB8C02B0A7983001757D8 /* NetworkManager */; };
+		630BB8C32B0A79B4001757D8 /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = 630BB8C22B0A79B4001757D8 /* NetworkManager */; };
+		630BB8C62B0A7A32001757D8 /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = 630BB8C52B0A7A32001757D8 /* NetworkManager */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +25,11 @@
 		630BB8A12B0A75A8001757D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		630BB8A32B0A75A8001757D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		630BB8A52B0A75A8001757D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		630BB8A82B0A75A8001757D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		630BB8AA2B0A75A8001757D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		630BB8AD2B0A75A8001757D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		630BB8AF2B0A75A8001757D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		630BB8B92B0A76A3001757D8 /* CatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsModel.swift; sourceTree = "<group>"; };
+		630BB8BB2B0A76AC001757D8 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				630BB8B72B0A7635001757D8 /* NetworkManager in Frameworks */,
+				630BB8C12B0A7983001757D8 /* NetworkManager in Frameworks */,
+				630BB8C32B0A79B4001757D8 /* NetworkManager in Frameworks */,
+				630BB8C62B0A7A32001757D8 /* NetworkManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +66,48 @@
 		630BB8A02B0A75A8001757D8 /* მოდულარობა */ = {
 			isa = PBXGroup;
 			children = (
-				630BB8A12B0A75A8001757D8 /* AppDelegate.swift */,
-				630BB8A32B0A75A8001757D8 /* SceneDelegate.swift */,
-				630BB8A52B0A75A8001757D8 /* ViewController.swift */,
-				630BB8A72B0A75A8001757D8 /* Main.storyboard */,
+				630BB8B82B0A7691001757D8 /* App */,
+				630BB8BD2B0A76B9001757D8 /* Model */,
+				630BB8BF2B0A76D1001757D8 /* Scenes */,
+				630BB8BE2B0A76C4001757D8 /* ViewModel */,
 				630BB8AA2B0A75A8001757D8 /* Assets.xcassets */,
 				630BB8AC2B0A75A8001757D8 /* LaunchScreen.storyboard */,
 				630BB8AF2B0A75A8001757D8 /* Info.plist */,
 			);
 			path = "მოდულარობა";
+			sourceTree = "<group>";
+		};
+		630BB8B82B0A7691001757D8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				630BB8A12B0A75A8001757D8 /* AppDelegate.swift */,
+				630BB8A32B0A75A8001757D8 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		630BB8BD2B0A76B9001757D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				630BB8B92B0A76A3001757D8 /* CatsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		630BB8BE2B0A76C4001757D8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				630BB8BB2B0A76AC001757D8 /* ViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		630BB8BF2B0A76D1001757D8 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				630BB8A52B0A75A8001757D8 /* ViewController.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +126,12 @@
 			dependencies = (
 			);
 			name = "მოდულარობა";
+			packageProductDependencies = (
+				630BB8B62B0A7635001757D8 /* NetworkManager */,
+				630BB8C02B0A7983001757D8 /* NetworkManager */,
+				630BB8C22B0A79B4001757D8 /* NetworkManager */,
+				630BB8C52B0A7A32001757D8 /* NetworkManager */,
+			);
 			productName = "მოდულარობა";
 			productReference = 630BB89E2B0A75A8001757D8 /* მოდულარობა.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +160,9 @@
 				Base,
 			);
 			mainGroup = 630BB8952B0A75A8001757D8;
+			packageReferences = (
+				630BB8C42B0A7A32001757D8 /* XCLocalSwiftPackageReference "../../NetworkManager" */,
+			);
 			productRefGroup = 630BB89F2B0A75A8001757D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +179,6 @@
 			files = (
 				630BB8AE2B0A75A8001757D8 /* LaunchScreen.storyboard in Resources */,
 				630BB8AB2B0A75A8001757D8 /* Assets.xcassets in Resources */,
-				630BB8A92B0A75A8001757D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +189,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				630BB8BC2B0A76AC001757D8 /* ViewModel.swift in Sources */,
 				630BB8A62B0A75A8001757D8 /* ViewController.swift in Sources */,
 				630BB8A22B0A75A8001757D8 /* AppDelegate.swift in Sources */,
 				630BB8A42B0A75A8001757D8 /* SceneDelegate.swift in Sources */,
+				630BB8BA2B0A76A3001757D8 /* CatsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		630BB8A72B0A75A8001757D8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				630BB8A82B0A75A8001757D8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		630BB8AC2B0A75A8001757D8 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -297,7 +342,6 @@
 				INFOPLIST_FILE = "მოდულარობა/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -325,7 +369,6 @@
 				INFOPLIST_FILE = "მოდულარობა/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -363,6 +406,32 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		630BB8C42B0A7A32001757D8 /* XCLocalSwiftPackageReference "../../NetworkManager" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../NetworkManager;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		630BB8B62B0A7635001757D8 /* NetworkManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkManager;
+		};
+		630BB8C02B0A7983001757D8 /* NetworkManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkManager;
+		};
+		630BB8C22B0A79B4001757D8 /* NetworkManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkManager;
+		};
+		630BB8C52B0A7A32001757D8 /* NetworkManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkManager;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 630BB8962B0A75A8001757D8 /* Project object */;
 }

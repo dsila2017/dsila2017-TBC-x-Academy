@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class FactsViewController: UIViewController {
     
     //MARK: Private Properties
     private lazy var mainStackView: UIStackView = {
@@ -38,11 +38,10 @@ final class ViewController: UIViewController {
         let imageView = UIImageView()
         imageView.image = .init(systemName: "cat")
         imageView.tintColor = .black
-        
         return imageView
     }()
     
-    private let viewModel = ViewModel()
+    private let viewModel = FactsViewModel()
     private var catData = CatsModel(data: nil)
     
     override func viewDidLoad() {
@@ -75,7 +74,6 @@ final class ViewController: UIViewController {
     }
     
     func setupTableView() {
-        tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -87,7 +85,7 @@ final class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension FactsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // რამდენი გამოიტანოს აქ პირდაპირ ვიუკონტროლერის მასივიდან რო დავაბრუნო შეიძლება თუ ვიუმოდელის მეთოდით უნდა წამოვიდეს?
         guard let data = catData.data?.count else {
@@ -108,11 +106,12 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UITableViewDelegate {
-}
-
-extension ViewController: mainViewModelDelegate {
-    func fetchData(CatArray: CatsModel) {
+extension FactsViewController: mainViewModelDelegate {
+    func notifyDataGotError(error: Error) {
+        print(error)
+    }
+    
+    func notifyDataGotFetched(CatArray: CatsModel) {
         self.catData = CatArray
         DispatchQueue.main.async {
             self.tableView.reloadData()

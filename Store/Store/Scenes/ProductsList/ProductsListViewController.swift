@@ -109,7 +109,8 @@ extension ProductsListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.delegate = self
-        cell.reload(with: currentProduct)
+        cell.tag = indexPath.row
+        cell.reload(with: currentProduct, index: indexPath.row)
         return cell
     }
 }

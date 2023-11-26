@@ -45,12 +45,12 @@ final class ProductCell: UITableViewCell {
     private func setupUI(){
         quantityModifierView.layer.cornerRadius = 5
         quantityModifierView.layer.borderWidth = 1
-        quantityModifierView.layer.borderColor = UIColor.red.cgColor
+        quantityModifierView.layer.borderColor = UIColor.systemGray.cgColor
     }
     
-    func reload(with product: ProductModel) {
+    func reload(with product: ProductModel, index: Int) {
         //TODO: reload images are not correct when reloading list after changing quantity
-        setImage(from: product.thumbnail)
+        setImage(from: product.thumbnail, index: index)
         prodTitleLbl.text = product.title
         stockLbl.text = "\(product.stock)"
         descrLbl.text = "\(product.description)"
@@ -58,10 +58,12 @@ final class ProductCell: UITableViewCell {
         selectedQuantityLbl.text = "\(product.selectedAmount ?? 0)"
     }
     
-    private func setImage(from url: String) {
+    private func setImage(from url: String, index: Int) {
         NetworkManager.shared.downloadImage(from: url) { [weak self] image in
             DispatchQueue.main.async {
-                self?.prodImageView.image = image
+                if self?.tag == index {
+                    self?.prodImageView.image = image
+                }
             }
         }
     }

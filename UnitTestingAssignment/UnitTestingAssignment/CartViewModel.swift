@@ -26,18 +26,20 @@ final class CartViewModel {
     }
     
     func fetchProducts() {
-        
         self.allproducts = ProductsResponse.dummyProducts
-
-//        NetworkManager.shared.fetchProducts(completion: { [weak self] products in
-//            switch products {
-//            case .success(let products):
-//                self?.allproducts = products
-//            case .failure(_):
-//                print("Failure")
-//                break
-//            }
-//        })
+    }
+    
+    func fetchApiProducts(completion: @escaping () -> Void) {
+        NetworkManager.shared.fetchProducts(completion: { [weak self] products in
+            switch products {
+            case .success(let products):
+                self?.allproducts = products
+                completion()
+            case .failure(_):
+                print("Failure")
+                break
+            }
+        })
     }
     
     func addProduct(withID: Int?) {
@@ -52,7 +54,7 @@ final class CartViewModel {
             selectedProducts[index].selectedQuantity! += 1
         } else {
             selectedProducts.append(product)
-            product.selectedQuantity! = 1
+            product.selectedQuantity = 1
         }
     }
     

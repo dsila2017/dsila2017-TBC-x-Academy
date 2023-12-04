@@ -30,13 +30,13 @@ class Product: Decodable {
     }
 }
 
-class MovieAPITests: XCTestCase {
-
+class ProductAPITests: XCTestCase {
+    
     func testFetchMovies() {
         let expectation = self.expectation(description: "Fetching products from API")
-
+        
         let apiUrl = URL(string: "https://dummyjson.com/products")!
-
+        
         URLSession.shared.dataTask(with: apiUrl) { (data, response, error) in
             
             XCTAssertNil(error, "მოხდა შეცდომა: \(error?.localizedDescription ?? "")")
@@ -47,7 +47,7 @@ class MovieAPITests: XCTestCase {
                 let productResponse = try decoder.decode(ProductsResponse.self, from: data!)
                 
                 XCTAssertFalse(productResponse.products.isEmpty, "არ გვაქვს პროდუქტები")
-
+                
                 for product in productResponse.products {
                     //print(product.id, "xxxx")
                     XCTAssertNotNil(product.id, "id არ უნდა იყოს nil")
@@ -58,7 +58,7 @@ class MovieAPITests: XCTestCase {
                 XCTFail("ვერ მოხდა დეკოდირება: \(error.localizedDescription)")
             }
         }.resume()
-
+        
         waitForExpectations(timeout: 10.0, handler: nil)
     }
 }

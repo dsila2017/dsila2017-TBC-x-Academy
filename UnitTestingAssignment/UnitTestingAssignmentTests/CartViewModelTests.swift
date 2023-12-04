@@ -11,11 +11,11 @@ import XCTest
 final class CartViewModelTests: XCTestCase {
     
     var cartViewModel: CartViewModel!
-
+    
     override func setUpWithError() throws {
         cartViewModel = CartViewModel()
     }
-
+    
     override func tearDownWithError() throws {
         cartViewModel = nil
     }

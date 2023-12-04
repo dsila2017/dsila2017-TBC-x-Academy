@@ -19,6 +19,7 @@
 		63A688682B1D5A53004CC369 /* UnitTestingAssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A688672B1D5A53004CC369 /* UnitTestingAssignmentTests.swift */; };
 		63A6886F2B1D5A83004CC369 /* CartViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A6886E2B1D5A83004CC369 /* CartViewModelTests.swift */; };
 		63A688712B1D6075004CC369 /* UnitTestForNewtworkingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A688702B1D6075004CC369 /* UnitTestForNewtworkingClass.swift */; };
+		63DCCE212B1DF991000C2EC0 /* APIProductsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DCCE202B1DF991000C2EC0 /* APIProductsTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		63A688672B1D5A53004CC369 /* UnitTestingAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestingAssignmentTests.swift; sourceTree = "<group>"; };
 		63A6886E2B1D5A83004CC369 /* CartViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModelTests.swift; sourceTree = "<group>"; };
 		63A688702B1D6075004CC369 /* UnitTestForNewtworkingClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestForNewtworkingClass.swift; sourceTree = "<group>"; };
+		63DCCE202B1DF991000C2EC0 /* APIProductsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProductsTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				63A688672B1D5A53004CC369 /* UnitTestingAssignmentTests.swift */,
 				63A6886E2B1D5A83004CC369 /* CartViewModelTests.swift */,
 				63A688702B1D6075004CC369 /* UnitTestForNewtworkingClass.swift */,
+				63DCCE202B1DF991000C2EC0 /* APIProductsTest.swift */,
 			);
 			path = UnitTestingAssignmentTests;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			files = (
 				63A6886F2B1D5A83004CC369 /* CartViewModelTests.swift in Sources */,
 				63A688712B1D6075004CC369 /* UnitTestForNewtworkingClass.swift in Sources */,
+				63DCCE212B1DF991000C2EC0 /* APIProductsTest.swift in Sources */,
 				63A688682B1D5A53004CC369 /* UnitTestingAssignmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,7 +408,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 636L4C9KC6;
+				DEVELOPMENT_TEAM = 25A9GC2B9J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UnitTestingAssignment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -432,7 +436,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 636L4C9KC6;
+				DEVELOPMENT_TEAM = 25A9GC2B9J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UnitTestingAssignment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

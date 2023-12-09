@@ -12,7 +12,7 @@ struct Task: Identifiable {
     var taskColor: Color
     var taskName: String
     var taskDate: String
-    @State var isComplete: Bool
+    var isComplete: Bool
 }
 
 struct TaskView: View {
@@ -42,13 +42,10 @@ struct TaskView: View {
                 }
             }
             
-            
             Spacer()
             
             Button {
-                print("\(task.isComplete)")
                 task.isComplete.toggle()
-                print("\(task.isComplete)")
             } label: {
                 Image (systemName: task.isComplete ?
                        "checkmark.circle.fill" : "circle")

@@ -23,12 +23,13 @@ struct ContentView: View {
 
 struct listView: View {
     
-    var model: ViewModel
+    var model: viewModelDelegate
     
     var body: some View {
         ScrollView {
+            
             ForEach(model.products) { product in
-                ProductView(viewModel: model, product: product)
+                ProductView(product: product, viewModel: model)
             }
         }
     }
@@ -36,8 +37,9 @@ struct listView: View {
 
 struct ProductView: View {
     
-    var viewModel: ViewModel
     var product: Product
+    var viewModel: viewModelDelegate
+    
     var body: some View {
         HStack {
             product.image
@@ -95,12 +97,12 @@ struct ProductView: View {
         .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
         .cornerRadius(10)
         .padding(10)
-        
     }
 }
 
 struct CartView: View {
-    var model: ViewModel
+    
+    var model: viewModelDelegate
     
     var body: some View {
         VStack {
@@ -133,6 +135,7 @@ struct CartView: View {
                 Text("Discount 50%")
                     .tint(.black)
             })
+            
             HStack {
                 Text("Total: ")
                 
@@ -140,7 +143,6 @@ struct CartView: View {
                 
                 Text("\(model.calculateTotal()) $")
             }
-            
             .padding(.horizontal, 20)
         }
         .frame(maxHeight: 100)

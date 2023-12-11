@@ -7,9 +7,24 @@
 
 import SwiftUI
 
+protocol viewModelDelegate: AnyObject {
+    var products: [Product] { get set }
+    var discounted: Bool { get set }
+    func addQuantity(product: Product)
+    func removeQuantity(product: Product)
+    func deleteProduct(product: Product)
+    func productsTotal(product: Product) -> Int
+    func calculateShipping() -> Int
+    func subtotal() -> Int
+    func calculateTotal() -> Int
+    func discount()
+}
+
 @Observable
-class ViewModel {
-    var products = [
+class ViewModel: viewModelDelegate {
+    
+    internal var products = [
+        
         Product(name: "Apple", price: 10, image: Image("Apple"), quantity: 0, stock: 10),
         Product(name: "Banana", price: 20, image: Image("Banana"), quantity: 0, stock: 10),
         Product(name: "Orange", price: 30, image: Image("Orange"), quantity: 0, stock: 10),
@@ -18,37 +33,38 @@ class ViewModel {
         Product(name: "Pineapple", price: 60, image: Image("Pineapple"), quantity: 0, stock: 10),
         Product(name: "Pomegranate", price: 70, image: Image("Pomegranate"), quantity: 0, stock: 10),
         Product(name: "Watermelon", price: 80, image: Image("Watermelon"), quantity: 0, stock: 10)
+        
     ]
     
-    var discounted = false
+    internal var discounted = false
     
-    func removeLast() {
+    internal func removeLast() {
         if products.count > 0 {
             products.removeLast()
         }
     }
     
-    func addQuantity(product: Product) {
+    internal func addQuantity(product: Product) {
         if product.quantity < product.stock {
             product.quantity += 1
         }
     }
     
-    func removeQuantity(product: Product) {
+    internal func removeQuantity(product: Product) {
         if product.quantity > 0 {
             product.quantity -= 1
         }
     }
     
-    func deleteProduct(product: Product) {
+    internal func deleteProduct(product: Product) {
         products.removeAll(where: {$0.name == product.name})
     }
     
-    func productsTotal(product: Product) -> Int {
+    internal func productsTotal(product: Product) -> Int {
         Int(product.price) * product.quantity
     }
     
-    func subtotal() -> Int {
+    internal func subtotal() -> Int {
         var subtotal = 0
         for product in products {
             subtotal += productsTotal(product: product)
@@ -56,7 +72,7 @@ class ViewModel {
         return subtotal
     }
     
-    func calculateShipping() -> Int {
+    internal func calculateShipping() -> Int {
         var count = 0
         for product in products {
             count += product.quantity
@@ -68,11 +84,11 @@ class ViewModel {
         }
     }
     
-    func calculateTotal() -> Int {
+    internal func calculateTotal() -> Int {
         return subtotal() + calculateShipping()
     }
     
-    func discount() {
+    internal func discount() {
         if discounted == false {
             for product in products {
                 product.price /= 2

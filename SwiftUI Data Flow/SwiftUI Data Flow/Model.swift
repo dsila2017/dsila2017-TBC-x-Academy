@@ -12,11 +12,11 @@ class Product: Identifiable {
     
     var id = UUID()
     var name: String
-    var price: Double
+    var price: Int
     var image: Image
     var quantity: Int
     
-    init(id: UUID = UUID(), name: String, price: Double, image: Image, quantity: Int) {
+    init(id: UUID = UUID(), name: String, price: Int, image: Image, quantity: Int) {
         self.id = id
         self.name = name
         self.price = price

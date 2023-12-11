@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        let model = ViewModel()
         NavigationStack{
             VStack {
-                listView(model: ViewModel())
-                CartView(model: ViewModel())
+                listView(model: model)
+                CartView(model: model)
             }
-            
+            .background(.white)
             .navigationTitle("Products")
         }
     }
-    
 }
 
 struct listView: View {
@@ -26,10 +26,10 @@ struct listView: View {
     var model: ViewModel
     
     var body: some View {
-        
-        
-        ForEach(model.products) { product in
-            ProductView(viewModel: model, product: product)
+        ScrollView {
+            ForEach(model.products) { product in
+                ProductView(viewModel: model, product: product)
+            }
         }
     }
 }
@@ -49,17 +49,21 @@ struct ProductView: View {
             
             VStack {
                 Text(product.name)
-                Text("\(product.price)")
+                Text("\(product.price) $")
                 
                 Spacer()
                 
                 HStack {
                     Button(action: {
                         viewModel.addQuantity(product: product)
+                        //viewModel.subtotal()
+                        print(viewModel.calculateShipping())
+                        print(viewModel.subtotal())
                     }, label: {
                         Image(systemName: "plus")
                             .foregroundStyle(.green)
                     })
+                    //.buttonStyle(BorderedButtonStyle())
                     
                     Text("\(product.quantity)")
                     
@@ -77,7 +81,7 @@ struct ProductView: View {
             Spacer()
             
             VStack {
-                Text("\(product.price * Double(product.quantity))")
+                Text("\(viewModel.productsTotal(product: product))")
                 
                 Spacer()
                 
@@ -87,13 +91,12 @@ struct ProductView: View {
                     Image(systemName: "x.square")
                         .resizable()
                         .frame(width: 30, height: 30)
-                        .foregroundStyle(.red)
+                        .foregroundStyle(.gray)
                 })
             }
             .padding()
         }
         .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
-        .background(.yellow)
         .cornerRadius(10)
         .padding(10)
         
@@ -107,9 +110,46 @@ struct CartView: View {
         VStack {
             HStack {
                 Text("Subtotal: ")
-                //Text
+                
+                Spacer()
+                
+                Text("\(model.subtotal()) $")
             }
+            .padding(.horizontal, 20)
+            
+            HStack {
+                Text("Shipping: ")
+                
+                Spacer()
+                
+                Text("\(model.calculateShipping()) $")
+            }
+            .padding(.horizontal, 20)
+            
+            Image("Line")
+                .resizable()
+                .padding(10)
+                .frame(maxWidth: .infinity, minHeight: 22, maxHeight: 22)
+            
+            Button(action: {
+                model.discount()
+                print(model.subtotal())
+            }, label: {
+                Text("Discount 50%")
+                    .tint(.black)
+            })
+            HStack {
+                Text("Total: ")
+                
+                Spacer()
+                
+                Text("\(model.calculateTotal()) $")
+            }
+            
+            .padding(.horizontal, 20)
         }
+        .frame(maxHeight: 100)
+        .padding()
     }
 }
 

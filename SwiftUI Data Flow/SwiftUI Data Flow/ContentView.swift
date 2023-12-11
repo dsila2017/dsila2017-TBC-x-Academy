@@ -56,14 +56,10 @@ struct ProductView: View {
                 HStack {
                     Button(action: {
                         viewModel.addQuantity(product: product)
-                        //viewModel.subtotal()
-                        print(viewModel.calculateShipping())
-                        print(viewModel.subtotal())
                     }, label: {
                         Image(systemName: "plus")
                             .foregroundStyle(.green)
                     })
-                    //.buttonStyle(BorderedButtonStyle())
                     
                     Text("\(product.quantity)")
                     
@@ -81,7 +77,7 @@ struct ProductView: View {
             Spacer()
             
             VStack {
-                Text("\(viewModel.productsTotal(product: product))")
+                Text("\(viewModel.productsTotal(product: product)) $")
                 
                 Spacer()
                 
@@ -133,7 +129,6 @@ struct CartView: View {
             
             Button(action: {
                 model.discount()
-                print(model.subtotal())
             }, label: {
                 Text("Discount 50%")
                     .tint(.black)

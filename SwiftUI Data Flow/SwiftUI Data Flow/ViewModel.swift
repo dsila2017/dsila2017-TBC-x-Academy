@@ -10,14 +10,14 @@ import SwiftUI
 @Observable
 class ViewModel {
     var products = [
-        Product(name: "Apple", price: 10, image: Image("Apple"), quantity: 10),
-        Product(name: "Banana", price: 20, image: Image("Banana"), quantity: 10),
-        Product(name: "Orange", price: 30, image: Image("Orange"), quantity: 10),
-        Product(name: "Mango", price: 40, image: Image("Mango"), quantity: 10),
-        Product(name: "Grapes", price: 50, image: Image("Grapes"), quantity: 10),
-        Product(name: "Pineapple", price: 60, image: Image("Pineapple"), quantity: 10),
-        Product(name: "Pomegranate", price: 70, image: Image("Pomegranate"), quantity: 10),
-        Product(name: "Watermelon", price: 80, image: Image("Watermelon"), quantity: 10)
+        Product(name: "Apple", price: 10, image: Image("Apple"), quantity: 0, stock: 10),
+        Product(name: "Banana", price: 20, image: Image("Banana"), quantity: 0, stock: 10),
+        Product(name: "Orange", price: 30, image: Image("Orange"), quantity: 0, stock: 10),
+        Product(name: "Mango", price: 40, image: Image("Mango"), quantity: 0, stock: 10),
+        Product(name: "Grapes", price: 50, image: Image("Grapes"), quantity: 0, stock: 10),
+        Product(name: "Pineapple", price: 60, image: Image("Pineapple"), quantity: 0, stock: 10),
+        Product(name: "Pomegranate", price: 70, image: Image("Pomegranate"), quantity: 0, stock: 10),
+        Product(name: "Watermelon", price: 80, image: Image("Watermelon"), quantity: 0, stock: 10)
     ]
     
     var discounted = false
@@ -29,11 +29,15 @@ class ViewModel {
     }
     
     func addQuantity(product: Product) {
-        product.quantity += 1
+        if product.quantity < product.stock {
+            product.quantity += 1
+        }
     }
     
     func removeQuantity(product: Product) {
-        product.quantity -= 1
+        if product.quantity > 0 {
+            product.quantity -= 1
+        }
     }
     
     func deleteProduct(product: Product) {
@@ -57,7 +61,7 @@ class ViewModel {
         for product in products {
             count += product.quantity
         }
-        if count <= 90 {
+        if count <= 10 {
             return 4
         } else {
             return 9

@@ -15,23 +15,19 @@ struct myAlert: View {
     
     var body: some View {
         
-        Button("Alert Button") {
+        Button("Get Travel Tip") {
             
             isAlertShowed = true
-        }.alert(isPresented: $isAlertShowed) {
+        }.alert("Travel Tip", isPresented: $isAlertShowed) {
             
-            Alert(
-                title: Text(tips.randomElement() ?? "Error"),
-                primaryButton: .destructive(
-                    Text("ok"),
-                    action: {
-                        
-                    }
-                ),
-                secondaryButton: .cancel()
-            )
+        } message: {
+            Text(tips.randomElement() ?? "Error")
         }
+        .buttonStyle(.bordered)
+        .buttonBorderShape(.roundedRectangle)
+        .tint(.teal)
     }
+        
 }
 
 //#Preview {

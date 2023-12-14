@@ -21,27 +21,25 @@ struct DestinationDetailScreen: View {
             .frame(width: 200, height: 140)
         
         ForEach(buttonNames, id: \.self) { name in
-            NavigationLink {
                 switch name {
                 case "Transport" :
-                    DestinationDetails(path: $path, destination: destination.transport)
+                    NavigationLink(value: destination.transport) {
+                        Text("\(name)")
+                    }
                 case "Must See":
-                    DestinationDetails(path: $path, destination: destination.mustSee)
+                    NavigationLink(value: destination.mustSee) {
+                        Text("\(name)")
+                    }
                 case "Hotels":
-                    DestinationDetails(path: $path, destination: destination.hotels)
+                    NavigationLink(value: destination.hotels) {
+                        Text("\(name)")
+                    }
                 default:
                     Text("Error")
                 }
-            } label: {
-                Text(name)
-            }
-//            NavigationLink(value: cityDetails) {
-//                //Text("\(destination.transport.count)")
-//                Text("x")
-//            }
             
-//        } .navigationDestination(for: String.self) { name in
-//            DestinationDetails(destination: destination.cityName, path: $path)
+        }.navigationDestination(for: Details.self) { details in
+            DestinationDetails(path: $path, destination: details)
         }
         
         

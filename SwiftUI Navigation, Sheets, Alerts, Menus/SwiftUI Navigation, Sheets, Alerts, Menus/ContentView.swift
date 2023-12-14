@@ -15,7 +15,7 @@ struct ContentView: View {
         NavigationStack(path: $path){
             VStack {
                 VStack {
-                    List(viewModel.destionations) { destination in
+                    List(viewModel.destinations) { destination in
                         NavigationLink(value: destination) {
                             HStack {
                                 Text(destination.cityName)

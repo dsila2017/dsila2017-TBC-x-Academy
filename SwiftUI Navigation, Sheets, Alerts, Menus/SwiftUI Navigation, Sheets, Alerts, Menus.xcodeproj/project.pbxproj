@@ -13,8 +13,10 @@
 		63246FF02B2B2FF800B75512 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63246FEF2B2B2FF800B75512 /* Preview Assets.xcassets */; };
 		63246FF82B2B305A00B75512 /* NetworkManager in Frameworks */ = {isa = PBXBuildFile; productRef = 63246FF72B2B305A00B75512 /* NetworkManager */; };
 		63246FFA2B2B308F00B75512 /* DestinationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246FF92B2B308F00B75512 /* DestinationModel.swift */; };
-		63246FFC2B2B31A300B75512 /* DestionationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246FFB2B2B31A300B75512 /* DestionationViewModel.swift */; };
+		63246FFC2B2B31A300B75512 /* DestinationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246FFB2B2B31A300B75512 /* DestinationViewModel.swift */; };
 		63246FFE2B2B4D7E00B75512 /* myAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63246FFD2B2B4D7E00B75512 /* myAlert.swift */; };
+		63D8D1592B2B9ADE00C856AA /* DestinationDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D8D1582B2B9ADE00C856AA /* DestinationDetailScreen.swift */; };
+		63D8D15B2B2B9B2C00C856AA /* DestinationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D8D15A2B2B9B2C00C856AA /* DestinationDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +26,10 @@
 		63246FEC2B2B2FF800B75512 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63246FEF2B2B2FF800B75512 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		63246FF92B2B308F00B75512 /* DestinationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationModel.swift; sourceTree = "<group>"; };
-		63246FFB2B2B31A300B75512 /* DestionationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestionationViewModel.swift; sourceTree = "<group>"; };
+		63246FFB2B2B31A300B75512 /* DestinationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationViewModel.swift; sourceTree = "<group>"; };
 		63246FFD2B2B4D7E00B75512 /* myAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myAlert.swift; sourceTree = "<group>"; };
+		63D8D1582B2B9ADE00C856AA /* DestinationDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetailScreen.swift; sourceTree = "<group>"; };
+		63D8D15A2B2B9B2C00C856AA /* DestinationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,9 @@
 			children = (
 				63246FE82B2B2FF700B75512 /* SwiftUI_Navigation__Sheets__Alerts__MenusApp.swift */,
 				63246FEA2B2B2FF700B75512 /* ContentView.swift */,
-				63246FFB2B2B31A300B75512 /* DestionationViewModel.swift */,
+				63D8D1582B2B9ADE00C856AA /* DestinationDetailScreen.swift */,
+				63D8D15A2B2B9B2C00C856AA /* DestinationDetails.swift */,
+				63246FFB2B2B31A300B75512 /* DestinationViewModel.swift */,
 				63246FF92B2B308F00B75512 /* DestinationModel.swift */,
 				63246FFD2B2B4D7E00B75512 /* myAlert.swift */,
 				63246FEC2B2B2FF800B75512 /* Assets.xcassets */,
@@ -155,10 +161,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				63246FEB2B2B2FF700B75512 /* ContentView.swift in Sources */,
+				63D8D1592B2B9ADE00C856AA /* DestinationDetailScreen.swift in Sources */,
 				63246FE92B2B2FF700B75512 /* SwiftUI_Navigation__Sheets__Alerts__MenusApp.swift in Sources */,
+				63D8D15B2B2B9B2C00C856AA /* DestinationDetails.swift in Sources */,
 				63246FFA2B2B308F00B75512 /* DestinationModel.swift in Sources */,
 				63246FFE2B2B4D7E00B75512 /* myAlert.swift in Sources */,
-				63246FFC2B2B31A300B75512 /* DestionationViewModel.swift in Sources */,
+				63246FFC2B2B31A300B75512 /* DestinationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

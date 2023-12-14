@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - DestionationModel
+// MARK: - DestinationModel
 struct DestinationModel: Codable, Hashable {
     let destinations: [Destination]
 }
@@ -15,19 +15,12 @@ struct DestinationModel: Codable, Hashable {
 // MARK: - Destination
 struct Destination: Codable, Identifiable, Hashable {
     var id = UUID()
-    let cityName, mainImage, description: String
-    let generalImages: [GeneralImage]
-    let transport, mustSee, hotels: [Hotel]
+    let cityName, mainImage, description, generalImages: String
+    let transport, mustSee, hotels: Details
 }
 
-enum GeneralImage: String, Codable, Hashable {
-    case image1 = "image1"
-    case image2 = "image2"
-    case image3 = "image3"
-}
-
-// MARK: - Hotel
-struct Hotel: Codable, Hashable {
+// MARK: - Details
+struct Details: Codable, Hashable {
     let image, name, description: String
-    let price: String?
+    let price: String
 }

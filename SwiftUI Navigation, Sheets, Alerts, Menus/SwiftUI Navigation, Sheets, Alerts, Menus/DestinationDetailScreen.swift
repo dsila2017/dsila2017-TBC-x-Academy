@@ -9,39 +9,65 @@ import SwiftUI
 
 struct DestinationDetailScreen: View {
     
+    //MARK: - Properties
     @EnvironmentObject var viewModel: DestinationViewModel
-    var destination: Destination
-    var buttonNames = ["Transport", "Must See", "Hotels"]
+    let destination: Destination
+    private let buttonNames = ["Transport", "Must See", "Hotels"]
     @Binding var path: NavigationPath
     
+    //MARK: - Views
     var body: some View {
-        Text(destination.description)
+        
+        Spacer()
+        
         Image("\(destination.mainImage)")
             .resizable()
-            .frame(width: 200, height: 140)
+            .frame(maxWidth: .infinity, maxHeight: 200)
+            .cornerRadius(20)
+            .padding()
+        
+        Spacer()
+        
+        Text(destination.description)
+            .padding()
+            .bold()
+        
+        Spacer()
         
         ForEach(buttonNames, id: \.self) { name in
-                switch name {
-                case "Transport" :
+            switch name {
+            case "Transport" :
+                Button(action: {}, label: {
                     NavigationLink(value: destination.transport) {
                         Text("\(name)")
                     }
-                case "Must See":
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.roundedRectangle)
+                    .tint(.teal)
+                })
+            case "Must See":
+                Button(action: {}, label: {
                     NavigationLink(value: destination.mustSee) {
                         Text("\(name)")
                     }
-                case "Hotels":
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.roundedRectangle)
+                    .tint(.teal)
+                })
+            case "Hotels":
+                Button(action: {}, label: {
                     NavigationLink(value: destination.hotels) {
                         Text("\(name)")
                     }
-                default:
-                    Text("Error")
-                }
-            
+                    .buttonStyle(.bordered)
+                    .buttonBorderShape(.roundedRectangle)
+                    .tint(.teal)
+                })
+            default:
+                Text("Error")
+            }
         }.navigationDestination(for: Details.self) { details in
             DestinationDetails(path: $path, destination: details)
         }
-        
-        
     }
 }

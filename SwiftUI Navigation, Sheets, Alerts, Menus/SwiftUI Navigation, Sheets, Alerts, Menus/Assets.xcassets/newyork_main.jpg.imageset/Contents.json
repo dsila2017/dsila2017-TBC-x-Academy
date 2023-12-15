@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "LowerManhattanSkyline-900c48d4f1064a97893dbc1548d775e1.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

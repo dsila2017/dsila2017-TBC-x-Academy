@@ -13,14 +13,13 @@ struct DestinationModel: Codable, Hashable {
 }
 
 // MARK: - Destination
-struct Destination: Codable, Identifiable, Hashable {
-    var id = UUID()
-    let cityName, mainImage, description, generalImages: String
+struct Destination: Codable, Hashable {
+    let cityName, mainImage, description, flag: String
     let transport, mustSee, hotels: Details
 }
 
 // MARK: - Details
 struct Details: Codable, Hashable {
-    let image, name, description: String
+    let symbol, name, description: String
     let price: String
 }

@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "New_Chidorigafuchi-Park-Tokyo_Credit_GettyImages-1148634785.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

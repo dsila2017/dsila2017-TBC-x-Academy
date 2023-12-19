@@ -11,7 +11,7 @@ import SwiftUI
 struct _7__Stacks__Grids__ScrollViewsApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            contentsView()
         }
     }
 }

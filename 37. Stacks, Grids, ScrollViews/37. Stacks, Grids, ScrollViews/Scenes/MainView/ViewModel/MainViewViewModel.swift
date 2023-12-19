@@ -12,8 +12,17 @@ import NetworkManager
 class MainViewViewModel: ObservableObject {
     
     @Published var products = ProductResponse(products: [Product]())
-    @Published var balance = 1000
+    @Published var balance = 1000000
     @Published var sum = 0
+    
+    @Published var isAlertShowed = false
+    @Published var isErrorAlertShowed = false
+    @Published var isLoading = false
+    
+    
+    var selectedQuantity: Int {
+        products.products.reduce(0) { $0 + $1.stock }
+    }
     
     init() {
         fetchProductData()
@@ -25,6 +34,7 @@ class MainViewViewModel: ObservableObject {
             case.success(let products):
                 DispatchQueue.main.async {
                     self.products = products
+                    self.calculateSum()
                 }
             case.failure(let failure):
                 print(failure)
@@ -43,10 +53,23 @@ class MainViewViewModel: ObservableObject {
     }
     
     func calculateSum() {
-        var sum = 0
-        for product in products.products {
-            sum += product.stock * Int(product.price)
+        sum = products.products.reduce(0) { $0 + $1.stock * Int($1.price) }
+    }
+    
+    func checkout() {
+        if balance >= sum {
+            balance -= sum
+            isAlertShowed = true
+        } else {
+            isErrorAlertShowed = true
         }
-        self.sum = sum
+    }
+    
+    func activity() {
+        isLoading = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.isLoading = false
+            self.checkout()
+        }
     }
 }

@@ -8,11 +8,35 @@
 import SwiftUI
 
 struct ProductsView: View {
+    @ObservedObject var model: ProductsViewModel
+    @ObservedObject var mainViewModel: MainViewViewModel
+    
+    var gridColumns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack {
+                Balance(model: mainViewModel)
+                    .padding()
+                ScrollView {
+                    LazyVGrid(columns: gridColumns, content: {
+                        ForEach(model.array.products, id: \.self) { product in
+                            ProductsGridView(model: mainViewModel, product: product)
+                        }
+                    })
+                }
+                Cart___Items(model: mainViewModel)
+            }
+            if mainViewModel.isLoading {
+                ActivityView()
+            }
+        }
     }
 }
 
-#Preview {
-    ProductsView()
-}
+//#Preview {
+//    ProductsView()
+//}

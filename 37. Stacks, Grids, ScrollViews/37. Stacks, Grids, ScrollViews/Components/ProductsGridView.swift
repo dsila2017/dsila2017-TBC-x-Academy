@@ -40,6 +40,6 @@ struct ProductsGridView: View {
         
 }
 
-//#Preview {
-//    ProductsGridView(product: Product(id: 10, title: "1", description: "1", price: 14.0, discountPercentage: 2, rating: 2.0, stock: 4, brand: "iPhone 9", category: "x", thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg", images: ["https://i.dummyjson.com/data/products/1/thumbnail.jpg"]))
-//}
+#Preview {
+    ProductsGridView(model: MainViewViewModel(), product: Product(id: 10, title: "1", description: "1", price: 14.0, discountPercentage: 2, rating: 2.0, stock: 4, brand: "iPhone 9", category: "x", thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg", images: ["https://i.dummyjson.com/data/products/1/thumbnail.jpg"]))
+}

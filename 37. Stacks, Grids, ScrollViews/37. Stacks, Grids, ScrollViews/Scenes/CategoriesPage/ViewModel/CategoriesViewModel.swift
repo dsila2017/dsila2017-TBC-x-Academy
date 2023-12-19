@@ -16,7 +16,7 @@ class CategoriesViewModel: ObservableObject {
         fetchCategoriesData()
     }
     
-    private func fetchCategoriesData() {
+    func fetchCategoriesData() {
         NetworkManager.shared.fetchData(url: "https://dummyjson.com/products/categories") { (result: Result<[String], Error>) in
             switch result {
             case .success(let categories):

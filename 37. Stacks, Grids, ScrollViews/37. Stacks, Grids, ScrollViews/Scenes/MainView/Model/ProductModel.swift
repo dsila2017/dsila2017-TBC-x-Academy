@@ -12,8 +12,6 @@ struct ProductResponse: Decodable, Hashable {
 }
 
 struct Product: Decodable, Hashable {
-    
-    
     let id: Int
     let title: String
     let description: String

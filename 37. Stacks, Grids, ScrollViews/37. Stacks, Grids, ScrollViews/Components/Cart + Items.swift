@@ -9,9 +9,10 @@ import SwiftUI
 
 struct Cart___Items: View {
     
+    // MARK: - Properties
     @ObservedObject var model: MainViewViewModel
     
-    
+    // MARK: - Body
     var body: some View {
         VStack {
             
@@ -60,19 +61,12 @@ struct Cart___Items: View {
             .tint(.red)
             .buttonStyle(.bordered)
             
-            
-            
             Spacer()
+            
         }
         .frame(maxWidth: .infinity, maxHeight: 100)
         .background(.teal)
-        //.cornerRadius(10)
-        //.padding()
         .foregroundColor(.white)
         .bold()
     }
-}
-
-#Preview {
-    Cart___Items(model: MainViewViewModel())
 }

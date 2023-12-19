@@ -9,8 +9,10 @@ import SwiftUI
 
 struct Balance: View {
     
+    // MARK: - Properties
     @ObservedObject var model: MainViewViewModel
     
+    // MARK: - Body
     var body: some View {
         HStack {
             Text("Your Balance is: \(model.balance) $")
@@ -19,13 +21,9 @@ struct Balance: View {
                 .padding()
                 .background(.teal)
                 .cornerRadius(10)
-                //.frame(maxWidth: 200)
             
             Spacer()
+            
         }
     }
 }
-
-//#Preview {
-//    Balance(balance: 10)
-//}

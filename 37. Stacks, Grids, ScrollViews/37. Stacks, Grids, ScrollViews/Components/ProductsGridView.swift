@@ -9,35 +9,35 @@ import SwiftUI
 
 struct ProductsGridView: View {
     
+    // MARK: - Properties
     @ObservedObject var model: MainViewViewModel
-    
     var product: Product
     
+    // MARK: - Body
     var body: some View {
         VStack {
             AsyncImage(url: URL(string: product.thumbnail)) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .cornerRadius(10)
-                            
-                    } placeholder: {
-                        Color.gray
-                    }
-                    .frame(height: 140)
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(10)
+                
+            } placeholder: {
+                Color.gray
+            }
+            .frame(height: 140)
             
             Text("\(product.brand)")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             selectorView(model: model, product: product)
-                
+            
         }
         .padding()
         .frame(maxWidth: 240, maxHeight: 240)
         .cornerRadius(10)
     }
-        
 }
 
 #Preview {

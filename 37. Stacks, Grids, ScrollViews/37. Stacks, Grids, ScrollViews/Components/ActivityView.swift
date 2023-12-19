@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ActivityView: View {
+    
+    // MARK: - Body
     var body: some View {
         ZStack {
             Color(.systemBackground)
@@ -18,8 +20,4 @@ struct ActivityView: View {
                 .scaleEffect(3)
         }
     }
-}
-
-#Preview {
-    ActivityView()
 }

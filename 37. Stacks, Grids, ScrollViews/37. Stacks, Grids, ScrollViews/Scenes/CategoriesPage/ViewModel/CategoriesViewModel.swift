@@ -10,12 +10,15 @@ import NetworkManager
 
 class CategoriesViewModel: ObservableObject {
     
+    // MARK: - Properties
     @Published var categories = [String]()
     
+    // MARK: - Initialization
     init() {
         fetchCategoriesData()
     }
     
+    // MARK: - Data Fetching
     func fetchCategoriesData() {
         NetworkManager.shared.fetchData(url: "https://dummyjson.com/products/categories") { (result: Result<[String], Error>) in
             switch result {
@@ -29,7 +32,3 @@ class CategoriesViewModel: ObservableObject {
         }
     }
 }
-
-//#Preview {
-//    CategoriesViewModel()
-//}

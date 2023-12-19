@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductsView: View {
+    
+    // MARK: - Properties
     @ObservedObject var model: ProductsViewModel
     @ObservedObject var mainViewModel: MainViewViewModel
     
@@ -16,6 +18,7 @@ struct ProductsView: View {
         GridItem(.flexible())
     ]
     
+    // MARK: - Body
     var body: some View {
         ZStack {
             VStack {
@@ -24,7 +27,12 @@ struct ProductsView: View {
                 ScrollView {
                     LazyVGrid(columns: gridColumns, content: {
                         ForEach(model.array.products, id: \.self) { product in
-                            ProductsGridView(model: mainViewModel, product: product)
+                            NavigationLink(value: product) {
+                                ProductsGridView(model: mainViewModel, product: product)
+                            }
+                        }
+                        .navigationDestination(for: Product.self) { product in
+                            ProductDetailView(model: ProductDetailViewModel(path: model.$path, product: product))
                         }
                     })
                 }
@@ -36,7 +44,3 @@ struct ProductsView: View {
         }
     }
 }
-
-//#Preview {
-//    ProductsView()
-//}

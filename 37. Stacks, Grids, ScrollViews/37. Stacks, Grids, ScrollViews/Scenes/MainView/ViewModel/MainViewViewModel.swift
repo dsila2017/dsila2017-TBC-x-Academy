@@ -11,6 +11,7 @@ import NetworkManager
 
 class MainViewViewModel: ObservableObject {
     
+    // MARK: - Published Properties
     @Published var products = ProductResponse(products: [Product]())
     @Published var balance = 1000000
     @Published var sum = 0
@@ -19,22 +20,24 @@ class MainViewViewModel: ObservableObject {
     @Published var isErrorAlertShowed = false
     @Published var isLoading = false
     
-    
+    // MARK: - Computed Property
     var selectedQuantity: Int {
         products.products.reduce(0) { $0 + $1.stock }
     }
     
+    // MARK: - Initializer
     init() {
         fetchProductData()
     }
     
-    func fetchProductData() {
-        NetworkManager.shared.fetchData(url: "https://dummyjson.com/products") { (result: Result<ProductResponse, Error>) in
+    // MARK: - Methods
+    private func fetchProductData() {
+        NetworkManager.shared.fetchData(url: "https://dummyjson.com/products") { [weak self] (result: Result<ProductResponse, Error>) in
             switch result {
             case.success(let products):
                 DispatchQueue.main.async {
-                    self.products = products
-                    self.calculateSum()
+                    self?.products = products
+                    self?.calculateSum()
                 }
             case.failure(let failure):
                 print(failure)
@@ -42,21 +45,18 @@ class MainViewViewModel: ObservableObject {
         }
     }
     
-    func increaseQuantity( product: Product) {
-        
-        //product.stock += 1
+    func increaseQuantity(product: Product) {
         calculateSum()
         balance -= 100
         print(sum)
         print(balance)
-        
     }
     
-    func calculateSum() {
+    private func calculateSum() {
         sum = products.products.reduce(0) { $0 + $1.stock * Int($1.price) }
     }
     
-    func checkout() {
+    private func checkout() {
         if balance >= sum {
             balance -= sum
             isAlertShowed = true
@@ -67,9 +67,9 @@ class MainViewViewModel: ObservableObject {
     
     func activity() {
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.isLoading = false
-            self.checkout()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.isLoading = false
+            self?.checkout()
         }
     }
 }

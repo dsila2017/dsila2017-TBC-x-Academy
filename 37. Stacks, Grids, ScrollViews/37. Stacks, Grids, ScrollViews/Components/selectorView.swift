@@ -9,15 +9,15 @@ import SwiftUI
 
 struct selectorView: View {
     
+    // MARK: - Properties
     @ObservedObject var model: MainViewViewModel
+    var product: Product
     
-     var product: Product
-    
+    // MARK: - Body
     var body: some View {
         HStack {
+            
             Button(action: {
-                
-                
             }, label: {
                 Image(systemName: "minus")
             })
@@ -26,16 +26,9 @@ struct selectorView: View {
             
             Button(action: {
                 model.increaseQuantity(product: product)
-                print(product.brand)
-                print(product.stock)
-                
             }, label: {
                 Image(systemName: "plus")
             })
         }
     }
 }
-
-//#Preview {
-//    selectorView(product: T##Product)
-//}

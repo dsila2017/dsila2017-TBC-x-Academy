@@ -9,8 +9,10 @@ import SwiftUI
 
 struct contentsView: View {
     
+    // MARK: - Properties
     var model = MainViewViewModel()
     
+    // MARK: - Body
     var body: some View {
         TabView {
             MainView(model: model)
@@ -30,8 +32,4 @@ struct contentsView: View {
             UITabBar.appearance().barTintColor = .systemTeal
         }
     }
-}
-
-#Preview {
-    contentsView()
 }

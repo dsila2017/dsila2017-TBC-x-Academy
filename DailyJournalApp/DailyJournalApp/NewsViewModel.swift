@@ -14,6 +14,7 @@ class NewsViewModel: ObservableObject {
     @Published var date = Date()
     @Published var news: [NewsModel] = []
     @Published var isOn = false
+    @Published var index: Int = 0
     
     
     func saveButon() {

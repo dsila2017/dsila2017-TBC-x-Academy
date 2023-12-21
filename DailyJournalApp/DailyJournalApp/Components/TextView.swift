@@ -9,12 +9,12 @@ import SwiftUI
 
 struct TextView: View {
     
-    @StateObject var model: NewsViewModel
-    //@Binding var text: String
+    //@StateObject var model: NewsViewModel
+    @Binding var text: String
 
     var body: some View {
         NavigationStack {
-            TextEditor(text: $model.newsText)
+            TextEditor(text: $text)
                 .foregroundStyle(.placeholder)
         }
     }

@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct newsEditView: View {
-    @State var text: String = "sd"
     var index: Int
     
-    @StateObject var model: NewsViewModel
+    @ObservedObject var model: NewsViewModel
     
     var body: some View {
         VStack {
+            Text("\(index)")
             TextField("Title", text: $model.news[index].title)
-            TextView1(text: $model.news[index].news)
+            TextView(text: $model.news[index].news)
                 .frame(maxHeight: 100)
             DatePicker("Date: ", selection: $model.news[index].date)
             Button(action: {
@@ -32,15 +32,3 @@ struct newsEditView: View {
 //#Preview {
 //    newsEditView(model: NewsViewModel())
 //}
-
-struct TextView1: View {
-    
-    @Binding var text: String
-
-    var body: some View {
-        NavigationStack {
-            TextEditor(text: $text)
-                .foregroundStyle(.placeholder)
-        }
-    }
-}

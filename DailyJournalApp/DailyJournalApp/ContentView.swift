@@ -22,7 +22,7 @@ struct ContentView: View {
                     TextField(text: $model.newsTitle) {
                         Text("News Title")
                     }
-                    TextView(model: model)
+                    TextView(text: $model.newsText)
                         .frame(height: 100)
                     DatePicker(selection: $model.date) {
                         Text("Date")
@@ -60,10 +60,11 @@ struct ContentView: View {
                                 .onTapGesture {
                                     //print(news.id, "s")
                                     model.isOn.toggle()
+                                    model.index = news
                                     print(news)
                                 }
                                 .sheet(isPresented: $model.isOn) {
-                                    newsEditView(index: news, model: model)
+                                    newsEditView(index: model.index, model: model)
                                 }
                             
                         }.onDelete(perform: { indexSet in

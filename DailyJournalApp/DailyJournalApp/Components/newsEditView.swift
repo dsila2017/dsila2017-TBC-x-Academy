@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct newsEditView: View {
-    var index: Int
     
     // MARK: - Properties
     @ObservedObject var model: NewsViewModel
+    var index: Int
     
     // MARK: - Body
     var body: some View {
@@ -35,8 +35,15 @@ struct newsEditView: View {
                 
                 DatePicker("Date: ", selection: $model.news[index].date)
                 
+                Picker("Category: ", selection: $model.selectedCategory) {
+                    ForEach(model.categories, id: \.self) { category in
+                        Text(category)
+                    }
+                }
+                
                 Button(action: {
                     model.isOn = false
+                    model.editSaveButton(index: index)
                 }, label: {
                     Text("Save")
                         .frame(maxWidth: .infinity, alignment: .center)

@@ -22,7 +22,8 @@ struct NewsView: View {
                 List {
                     
                     ForEach (model.news.indices, id: \.self) { news in
-                        News(title: model.news[news].title, news: model.news[news].news, date: model.news[news].date, model: model, isFavourite: $model.news[news].isFavourite)
+                        
+                        News(title: model.news[news].title, news: model.news[news].news, date: model.news[news].date, category: model.news[news].category, model: model, isFavourite: $model.news[news].isFavourite)
                             .onTapGesture(count: 2) {
                                 model.addFavourite(index: news)
                             }
@@ -31,7 +32,7 @@ struct NewsView: View {
                                 model.index = news
                                 
                             }.sheet(isPresented: $model.isOn) {
-                                newsEditView(index: model.index, model: model)
+                                newsEditView(model: model, index: model.index)
                             }
                         
                     }.onDelete(perform: { indexSet in

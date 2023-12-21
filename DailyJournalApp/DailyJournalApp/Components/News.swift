@@ -13,6 +13,7 @@ struct News: View {
     var title: String
     var news: String
     var date: Date
+    var category: String
     
     @StateObject var model: NewsViewModel
     @Binding var isFavourite: Bool
@@ -25,6 +26,7 @@ struct News: View {
                 Text(title)
                 Text(news)
                 Text(formatDate())
+                Text(category)
             }
             
             .font(.custom("AmericanTypewriter", fixedSize: 24).bold())

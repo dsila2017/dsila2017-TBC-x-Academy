@@ -14,5 +14,5 @@ struct NewsModel: Identifiable {
     var news: String
     var date: Date
     var isFavourite: Bool = false
-    
+    var category: String
 }

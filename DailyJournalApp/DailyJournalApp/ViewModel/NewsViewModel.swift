@@ -16,10 +16,12 @@ class NewsViewModel: ObservableObject {
     @Published var news: [NewsModel] = []
     @Published var isOn = false
     @Published var index: Int = 0
+    @Published var categories: [String] = ["General", "Sports", "Economics", "Technology"]
+    @Published var selectedCategory: String = ""
     
     // MARK: - Methods
     func saveButon() {
-        news.append(NewsModel(title: newsTitle, news: newsText, date: date))
+        news.append(NewsModel(title: newsTitle, news: newsText, date: date, category: selectedCategory))
         newsTitle = ""
         newsText = "Enter News Text Here"
         date = Date()
@@ -40,5 +42,9 @@ class NewsViewModel: ObservableObject {
     
     func checkFavourite(index: Int) -> Bool {
         news[index].isFavourite
+    }
+    
+    func editSaveButton(index: Int) {
+        news[index].category = selectedCategory
     }
 }

@@ -31,6 +31,12 @@ struct MainView: View {
                         Text("Date: ")
                     }
                     
+                    Picker("Category: ", selection: $model.selectedCategory) {
+                        ForEach(model.categories, id: \.self) { category in
+                            Text(category)
+                        }
+                    }
+                    
                     // MARK: - Save Button
                     Button(action: {
                         model.saveButon()

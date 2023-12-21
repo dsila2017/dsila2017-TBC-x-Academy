@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var model = NewsViewModel()
+    @State var isOn = false
     
     init() {
         // Large Navigation Title
@@ -56,8 +57,16 @@ struct ContentView: View {
                 ZStack {
                     
                     List {
-                        ForEach (model.news) { news in
-                            Text(news.title)
+                        ForEach ($model.news) { $news in
+                            News(title: news.title, news: news.news, date: news.date)
+                                .onTapGesture {
+                                    print("Tapped")
+                                    isOn.toggle()
+                                }.sheet(isPresented: $isOn) {
+//                                    TextField(text: news.$news) {
+//                                        Text("Text")
+//                                    }
+                                }
                             
                         }.onDelete(perform: { indexSet in
                             model.news.remove(atOffsets: indexSet)
@@ -66,6 +75,9 @@ struct ContentView: View {
                             model.news.move(fromOffsets: IndexSet, toOffset: Int)
                         }
                     }
+//                    .onTapGesture {
+//                        print("Tapped")
+//                    }
                     .toolbar {
                         EditButton()
                     }

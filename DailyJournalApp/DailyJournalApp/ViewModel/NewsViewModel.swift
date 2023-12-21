@@ -9,6 +9,7 @@ import SwiftUI
 
 class NewsViewModel: ObservableObject {
     
+    // MARK: - Published Properties]
     @Published var newsTitle: String = ""
     @Published var newsText: String = "Enter News Text Here"
     @Published var date = Date()
@@ -16,7 +17,7 @@ class NewsViewModel: ObservableObject {
     @Published var isOn = false
     @Published var index: Int = 0
     
-    
+    // MARK: - Methods
     func saveButon() {
         news.append(NewsModel(title: newsTitle, news: newsText, date: date))
         newsTitle = ""
@@ -30,5 +31,14 @@ class NewsViewModel: ObservableObject {
         } else {
             false
         }
+    }
+    
+    func addFavourite(index: Int) {
+        news[index].isFavourite.toggle()
+        print(news[index].isFavourite)
+    }
+    
+    func checkFavourite(index: Int) -> Bool {
+        news[index].isFavourite
     }
 }

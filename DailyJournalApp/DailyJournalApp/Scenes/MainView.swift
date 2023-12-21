@@ -18,6 +18,7 @@ struct MainView: View {
                 
                 Form {
                     
+                    // MARK: - Text Fields
                     TextField(text: $model.newsTitle) {
                         Text("News Title")
                     }
@@ -25,10 +26,12 @@ struct MainView: View {
                     TextView(text: $model.newsText)
                         .frame(height: 400)
                     
+                    // MARK: - Date Picker
                     DatePicker(selection: $model.date) {
                         Text("Date: ")
                     }
                     
+                    // MARK: - Save Button
                     Button(action: {
                         model.saveButon()
                     }, label: {
@@ -41,6 +44,8 @@ struct MainView: View {
                 }
                 .tint(Color(uiColor: .purple))
                 .foregroundStyle(Color(uiColor: .purple))
+                
+                // MARK: - Top Bar Leading Item
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading, content: {
                         Text("Create News")

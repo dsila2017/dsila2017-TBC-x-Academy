@@ -9,22 +9,34 @@ import SwiftUI
 
 struct News: View {
     
+    // MARK: - Properties
     var title: String
     var news: String
     var date: Date
-    @State var isOn = false
+    
     @StateObject var model: NewsViewModel
+    @Binding var isFavourite: Bool
+    @State var isOn = false
     
-    
+    // MARK: - Body
     var body: some View {
-        VStack {
-            Text(title)
-            Text(news)
-            Text(formatDate())
+        HStack {
+            VStack {
+                Text(title)
+                Text(news)
+                Text(formatDate())
+            }
+            
+            .font(.custom("AmericanTypewriter", fixedSize: 24).bold())
+            .foregroundStyle(Color(uiColor: .purple))
+            .frame(maxWidth: .infinity)
+            
+            Image(systemName: isFavourite ? "star.fill" : "star")
+                .foregroundStyle(Color(uiColor: .purple))
+                .onTapGesture {
+                    isFavourite.toggle()
+                }
         }
-        .font(.custom("AmericanTypewriter", fixedSize: 24).bold())
-        .foregroundStyle(Color(uiColor: .purple))
-        .frame(maxWidth: .infinity)
     }
     
     private func formatDate() -> String {

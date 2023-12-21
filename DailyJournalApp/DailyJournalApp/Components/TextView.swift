@@ -9,8 +9,10 @@ import SwiftUI
 
 struct TextView: View {
     
+    // MARK: - Properties
     @Binding var text: String
 
+    // MARK: - Body
     var body: some View {
         NavigationStack {
             TextEditor(text: $text)

@@ -10,24 +10,31 @@ import SwiftUI
 struct newsEditView: View {
     var index: Int
     
+    // MARK: - Properties
     @ObservedObject var model: NewsViewModel
     
+    // MARK: - Body
     var body: some View {
+        
         VStack {
+            
             Spacer()
+            
             Text("Edit News")
                 .font(.custom("AmericanTypewriter", fixedSize: 24).bold())
                 .foregroundStyle(Color(uiColor: .purple))
+                                 
             List {
                 
                 TextField("Title", text: $model.news[index].title)
-                    
+                
                 TextView(text: $model.news[index].news)
                 
                 
                     .frame(height: 200)
                 
                 DatePicker("Date: ", selection: $model.news[index].date)
+                
                 Button(action: {
                     model.isOn = false
                 }, label: {
@@ -39,10 +46,5 @@ struct newsEditView: View {
             .foregroundStyle(Color(uiColor: .purple))
             .foregroundStyle(Color(uiColor: .purple))
         }
-        
     }
 }
-
-//#Preview {
-//    newsEditView(model: NewsViewModel())
-//}

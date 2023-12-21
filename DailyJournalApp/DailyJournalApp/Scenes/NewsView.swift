@@ -9,17 +9,23 @@ import SwiftUI
 
 struct NewsView: View {
     
+    // MARK: - Properties
     @StateObject var model: NewsViewModel
     
+    // MARK: - Body
     var body: some View {
         NavigationStack {
             
             ZStack {
                 
+                // MARK: - News List
                 List {
                     
                     ForEach (model.news.indices, id: \.self) { news in
-                        News(title: model.news[news].title, news: model.news[news].news, date: model.news[news].date, model: model)
+                        News(title: model.news[news].title, news: model.news[news].news, date: model.news[news].date, model: model, isFavourite: $model.news[news].isFavourite)
+                            .onTapGesture(count: 2) {
+                                model.addFavourite(index: news)
+                            }
                             .onTapGesture {
                                 model.isOn.toggle()
                                 model.index = news
@@ -37,6 +43,7 @@ struct NewsView: View {
                     }
                 }
                 
+                // MARK: - Toolbar
                 .toolbar {
                     
                     EditButton()
@@ -63,6 +70,8 @@ struct NewsView: View {
                 }.navigationBarTitleDisplayMode(.inline)
                     .overlay(Group {
                         if model.checkEmptyNews() {
+                            
+                            // MARK: - Empty News Message
                             Text(" 📰 Looks like theres no News for now.")
                                 .font(.custom("AmericanTypewriter", fixedSize: 24).bold())
                                 .foregroundStyle(Color(uiColor: .purple))

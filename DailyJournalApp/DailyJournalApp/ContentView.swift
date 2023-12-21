@@ -10,10 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var model = NewsViewModel()
-    @State var isOn = false
     
     init() {
-        // Large Navigation Title
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.purple]
     }
     
@@ -57,15 +55,15 @@ struct ContentView: View {
                 ZStack {
                     
                     List {
-                        ForEach ($model.news) { $news in
-                            News(title: news.title, news: news.news, date: news.date)
+                        ForEach (model.news.indices, id: \.self) { news in
+                            News(title: model.news[news].title, news: model.news[news].news, date: model.news[news].date, model: model)
                                 .onTapGesture {
-                                    print("Tapped")
-                                    isOn.toggle()
-                                }.sheet(isPresented: $isOn) {
-//                                    TextField(text: news.$news) {
-//                                        Text("Text")
-//                                    }
+                                    //print(news.id, "s")
+                                    model.isOn.toggle()
+                                    print(news)
+                                }
+                                .sheet(isPresented: $model.isOn) {
+                                    newsEditView(index: news, model: model)
                                 }
                             
                         }.onDelete(perform: { indexSet in

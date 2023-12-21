@@ -10,6 +10,7 @@ import SwiftUI
 struct TextView: View {
     
     @StateObject var model: NewsViewModel
+    //@Binding var text: String
 
     var body: some View {
         NavigationStack {

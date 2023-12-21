@@ -10,21 +10,22 @@ import SwiftUI
 struct News: View {
     
     var title: String
-    @State var news: String
+    var news: String
     var date: Date
     @State var isOn = false
+    @StateObject var model: NewsViewModel
+    
     
     var body: some View {
         VStack {
             Text(title)
             Text(news)
-                .onTapGesture {
-                    isOn.toggle()
-                }.sheet(isPresented: $isOn) {
-                    TextField(text: $news) {
-                        Text("Text")
-                    }
-                }
+//                .onTapGesture {
+//                    model.isOn = true
+//                }
+//                .sheet(isPresented: $model.isOn) {
+//                    newsEditView(model: model)
+//                }
             Text(formatDate())
         }
         
@@ -42,6 +43,6 @@ struct News: View {
     }
 }
 
-#Preview {
-    News(title: "Title", news: "News", date: .now)
-}
+//#Preview {
+//    News(title: "Title", news: "News", date: .now)
+//}

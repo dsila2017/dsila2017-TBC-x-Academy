@@ -13,10 +13,14 @@ class NewsViewModel: ObservableObject {
     @Published var newsText: String = "Enter News Text Here"
     @Published var date = Date()
     @Published var news: [NewsModel] = []
+    @Published var isOn = false
     
     
     func saveButon() {
         news.append(NewsModel(title: newsTitle, news: newsText, date: date))
+        newsTitle = ""
+        newsText = ""
+        date = Date()
         print(news.count)
     }
     

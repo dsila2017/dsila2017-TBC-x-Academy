@@ -20,19 +20,11 @@ struct News: View {
         VStack {
             Text(title)
             Text(news)
-//                .onTapGesture {
-//                    model.isOn = true
-//                }
-//                .sheet(isPresented: $model.isOn) {
-//                    newsEditView(model: model)
-//                }
             Text(formatDate())
         }
-        
-        .font(.custom("AmericanTypewriter", fixedSize: 24))
+        .font(.custom("AmericanTypewriter", fixedSize: 24).bold())
         .foregroundStyle(Color(uiColor: .purple))
         .frame(maxWidth: .infinity)
-        .background(.red)
     }
     
     private func formatDate() -> String {
@@ -42,7 +34,3 @@ struct News: View {
         return dateFormatter.string(from: date)
     }
 }
-
-//#Preview {
-//    News(title: "Title", news: "News", date: .now)
-//}

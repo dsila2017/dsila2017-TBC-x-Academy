@@ -20,9 +20,8 @@ class NewsViewModel: ObservableObject {
     func saveButon() {
         news.append(NewsModel(title: newsTitle, news: newsText, date: date))
         newsTitle = ""
-        newsText = ""
+        newsText = "Enter News Text Here"
         date = Date()
-        print(news.count)
     }
     
     func checkEmptyNews() -> Bool {

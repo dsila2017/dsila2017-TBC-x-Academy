@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63B7B0942B3911FC00374F8E /* EffectsLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = 63B7B0932B3911FC00374F8E /* EffectsLibrary */; };
 		63D99AD42B390CF000F622D0 /* SwiftUI_AnimationsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D99AD32B390CF000F622D0 /* SwiftUI_AnimationsApp.swift */; };
 		63D99AD62B390CF000F622D0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D99AD52B390CF000F622D0 /* ContentView.swift */; };
 		63D99AD82B390CF100F622D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D99AD72B390CF100F622D0 /* Assets.xcassets */; };
 		63D99ADB2B390CF100F622D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63D99ADA2B390CF100F622D0 /* Preview Assets.xcassets */; };
+		63D99AE22B39101700F622D0 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D99AE12B39101700F622D0 /* Tree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,7 @@
 		63D99AD52B390CF000F622D0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		63D99AD72B390CF100F622D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63D99ADA2B390CF100F622D0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		63D99AE12B39101700F622D0 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B7B0942B3911FC00374F8E /* EffectsLibrary in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +57,7 @@
 			children = (
 				63D99AD32B390CF000F622D0 /* SwiftUI_AnimationsApp.swift */,
 				63D99AD52B390CF000F622D0 /* ContentView.swift */,
+				63D99AE12B39101700F622D0 /* Tree.swift */,
 				63D99AD72B390CF100F622D0 /* Assets.xcassets */,
 				63D99AD92B390CF100F622D0 /* Preview Content */,
 			);
@@ -83,6 +88,9 @@
 			dependencies = (
 			);
 			name = "SwiftUI Animations";
+			packageProductDependencies = (
+				63B7B0932B3911FC00374F8E /* EffectsLibrary */,
+			);
 			productName = "SwiftUI Animations";
 			productReference = 63D99AD02B390CF000F622D0 /* SwiftUI Animations.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +119,9 @@
 				Base,
 			);
 			mainGroup = 63D99AC72B390CF000F622D0;
+			packageReferences = (
+				63B7B0922B3911FC00374F8E /* XCRemoteSwiftPackageReference "effects-library" */,
+			);
 			productRefGroup = 63D99AD12B390CF000F622D0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63D99AE22B39101700F622D0 /* Tree.swift in Sources */,
 				63D99AD62B390CF000F622D0 /* ContentView.swift in Sources */,
 				63D99AD42B390CF000F622D0 /* SwiftUI_AnimationsApp.swift in Sources */,
 			);
@@ -344,6 +356,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		63B7B0922B3911FC00374F8E /* XCRemoteSwiftPackageReference "effects-library" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GetStream/effects-library";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		63B7B0932B3911FC00374F8E /* EffectsLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 63B7B0922B3911FC00374F8E /* XCRemoteSwiftPackageReference "effects-library" */;
+			productName = EffectsLibrary;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 63D99AC82B390CF000F622D0 /* Project object */;
 }
